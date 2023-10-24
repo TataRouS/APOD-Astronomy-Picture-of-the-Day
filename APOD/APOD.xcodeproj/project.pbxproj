@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */; };
+		BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
 		BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F0682ADDA182006C0518 /* AppDelegate.swift */; };
 		BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */; };
 		BD42F06D2ADDA182006C0518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F06C2ADDA182006C0518 /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServieceProtocol.swift; sourceTree = "<group>"; };
+		BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiece.swift; sourceTree = "<group>"; };
 		BD42F0652ADDA182006C0518 /* APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD42F0682ADDA182006C0518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,15 @@
 			path = Presentors;
 			sourceTree = "<group>";
 		};
+		BD366FCA2AE86B770068E36C /* NetworkServiece */ = {
+			isa = PBXGroup;
+			children = (
+				BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */,
+				BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */,
+			);
+			path = NetworkServiece;
+			sourceTree = "<group>";
+		};
 		BD42F05C2ADDA182006C0518 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 				BD366F3C2AE08CC80068E36C /* Presentors */,
 				BD366F3B2AE08CBD0068E36C /* Views */,
 				BD366F3A2AE08CB20068E36C /* Models */,
+				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 				BD42F0682ADDA182006C0518 /* AppDelegate.swift */,
 				BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */,
 				BD42F06E2ADDA182006C0518 /* Main.storyboard */,
@@ -283,7 +297,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD42F06D2ADDA182006C0518 /* ViewController.swift in Sources */,
+				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
+				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
 				BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
