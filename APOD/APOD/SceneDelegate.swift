@@ -24,13 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //    newViewController.tabBarItem.title = "DateAPOD"
         
         
-        let controllers = [viewController, newViewController]
+        let controllers = [viewController]
         
         tabBarController.viewControllers = controllers
         
         let navigationController = UINavigationController(rootViewController: tabBarController)
         
-        window = UIWindow(windowScene: scene)
+        window = UIWindow(windowScene: scene as! UIWindowScene as! UIWindowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
