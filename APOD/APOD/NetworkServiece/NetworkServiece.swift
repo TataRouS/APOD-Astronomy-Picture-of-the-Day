@@ -5,6 +5,8 @@
 //  Created by Nata Kuznetsova on 25.10.2023.
 //
 
+import Foundation
+
 
 final class NetworkService: NetworkServiceProtocol {
     
