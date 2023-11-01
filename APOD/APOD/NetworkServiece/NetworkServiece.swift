@@ -10,6 +10,7 @@ import Foundation
 
 final class NetworkService: NetworkServiceProtocol {
     
+    
     enum NetworkError: Error {
         case dataError
     }
@@ -18,8 +19,9 @@ final class NetworkService: NetworkServiceProtocol {
     //   static var api_key = ""
     //MARK: - General function to get info from Network
     
-    func getImage(completion: @escaping (Result<[DataImage], Error>) -> Void ) {
-        let url = URL(string: "https//api.nasa.gov/planetary/apod?api_key=2YS2Stqx8sBjzjCbCbiRnaSielwhKXpiEgootxHg")
+  func getImage(completion: @escaping (Result<DataImage, Error>) -> Void ) {
+      
+        let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=2YS2Stqx8sBjzjCbCbiRnaSielwhKXpiEgootxHg")
         guard let url else {
             return
         }
@@ -35,8 +37,8 @@ final class NetworkService: NetworkServiceProtocol {
             }
             do {
                 let apod = try
-                JSONDecoder().decode(APODModel.self, from: data)
-                completion(.success(apod.response.items)) // под ? запись response.items
+                JSONDecoder().decode(DataImage.self, from: data)
+                completion(.success(apod))
                 print(apod)
             } catch {
                 completion(.failure(error))
