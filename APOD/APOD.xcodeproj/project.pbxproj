@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C6C9DCE2AEBBF5C00B87D6D /* APODModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* APODModel.swift */; };
+		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */; };
 		BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
 		BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F0682ADDA182006C0518 /* AppDelegate.swift */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C6C9DCD2AEBBF5C00B87D6D /* APODModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODModel.swift; sourceTree = "<group>"; };
+		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServieceProtocol.swift; sourceTree = "<group>"; };
 		BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiece.swift; sourceTree = "<group>"; };
 		BD42F0652ADDA182006C0518 /* APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,16 +81,9 @@
 		8C6C9DCC2AEBBF4A00B87D6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8C6C9DCD2AEBBF5C00B87D6D /* APODModel.swift */,
+				8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		BD366F3A2AE08CB20068E36C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		BD366F3B2AE08CBD0068E36C /* Views */ = {
@@ -140,10 +133,9 @@
 		BD42F0672ADDA182006C0518 /* APOD */ = {
 			isa = PBXGroup;
 			children = (
-				8C6C9DCC2AEBBF4A00B87D6D /* Model */,
 				BD366F3C2AE08CC80068E36C /* Presentors */,
+				8C6C9DCC2AEBBF4A00B87D6D /* Model */,
 				BD366F3B2AE08CBD0068E36C /* Views */,
-				BD366F3A2AE08CB20068E36C /* Models */,
 				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 				BD42F0682ADDA182006C0518 /* AppDelegate.swift */,
 				BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */,
@@ -304,7 +296,7 @@
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
 				BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */,
-				8C6C9DCE2AEBBF5C00B87D6D /* APODModel.swift in Sources */,
+				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

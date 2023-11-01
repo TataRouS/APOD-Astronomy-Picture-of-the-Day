@@ -6,5 +6,5 @@
 //
 
 protocol NetworkServiceProtocol {
-    func getImage(completion: @escaping (Result<[DataImage], Error>) -> Void) -> Void
+    func getImage(completion: @escaping (Result<DataImage, Error>) -> Void) -> Void
 }
