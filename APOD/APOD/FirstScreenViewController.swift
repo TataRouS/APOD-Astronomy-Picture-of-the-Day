@@ -40,12 +40,12 @@ class FirstScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
         setupViews()
       getImage ()
-//        networkService.getImage { apod in
-//            print(apod)
-//        }
+        networkService.getImage { apod in
+            print(apod)
+        }
     }
     
         func setupViews() {
