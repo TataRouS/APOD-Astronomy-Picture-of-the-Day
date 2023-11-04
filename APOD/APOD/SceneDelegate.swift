@@ -11,26 +11,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
        
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
         let tabBarController = UITabBarController()
         
         let viewController = FirstScreenViewController()
-    //    let newViewController = NewViewController()
+        let newViewController = SecondScreenViewController()
         
         viewController.tabBarItem.title = "APOD"
-    //    newViewController.tabBarItem.title = "DateAPOD"
+        newViewController.tabBarItem.title = "DateAPOD"
         
-        
-        let controllers = [viewController]
+        let controllers = [viewController, newViewController]
         
         tabBarController.viewControllers = controllers
         
         let navigationController = UINavigationController(rootViewController: tabBarController)
         
-        window = UIWindow(windowScene: scene as! UIWindowScene as! UIWindowScene)
+        window = UIWindow(windowScene: scene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

@@ -11,7 +11,7 @@ struct DataImage: Decodable {
     let copyright, date, explanation: String?
     let hdurl: String?
     let mediaType, serviceVersion, title: String?
-    let url: String?
+    let url: URL?
 
     enum CodingKeys: String, CodingKey {
         case copyright, date, explanation, hdurl

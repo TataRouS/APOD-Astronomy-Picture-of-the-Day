@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C1B40662AF6656C00E4231A /* SecondScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */; };
+		8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
+		8C1B406A2AF669EA00E4231A /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40692AF669EA00E4231A /* NetworkController.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */; };
 		BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScreenViewController.swift; sourceTree = "<group>"; };
+		8C1B40672AF6698B00E4231A /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
+		8C1B40692AF669EA00E4231A /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServieceProtocol.swift; sourceTree = "<group>"; };
 		BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiece.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				BD42F06C2ADDA182006C0518 /* FirstScreenViewController.swift */,
+				8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -106,6 +113,7 @@
 			children = (
 				BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */,
 				BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */,
+				8C1B40692AF669EA00E4231A /* NetworkController.swift */,
 			);
 			path = NetworkServiece;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				BD366F3C2AE08CC80068E36C /* Presentors */,
+				8C1B40672AF6698B00E4231A /* URLExtension.swift */,
 				8C6C9DCC2AEBBF4A00B87D6D /* Model */,
 				BD366F3B2AE08CBD0068E36C /* Views */,
 				BD366FCA2AE86B770068E36C /* NetworkServiece */,
@@ -295,8 +304,11 @@
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
+				8C1B40662AF6656C00E4231A /* SecondScreenViewController.swift in Sources */,
+				8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */,
 				BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */,
 				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
+				8C1B406A2AF669EA00E4231A /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
