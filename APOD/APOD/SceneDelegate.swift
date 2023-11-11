@@ -18,11 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewController = FirstScreenViewController()
         let newViewController = SecondScreenViewController()
+        let favoriteControler = FavoriteScreenViewController()
         
         viewController.tabBarItem.title = "APOD"
+        viewController.tabBarItem.image = UIImage(systemName: "photo")
         newViewController.tabBarItem.title = "DateAPOD"
+        newViewController.tabBarItem.image = UIImage(systemName: "photo.on.rectangle")
+        favoriteControler.tabBarItem.title = "Favorite"
+        favoriteControler.tabBarItem.image = UIImage(systemName: "heart.circle")
         
-        let controllers = [viewController, newViewController]
+        let controllers = [viewController, newViewController, favoriteControler]
         
         tabBarController.viewControllers = controllers
         
