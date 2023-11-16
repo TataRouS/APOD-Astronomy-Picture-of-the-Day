@@ -15,9 +15,10 @@ class FirstScreenViewController: UIViewController {
     
     private var labelTitle: UILabel = {
         let label = UILabel()
-        label.text = "APOD Title"
-        label.backgroundColor = .green
+        label.backgroundColor = .white
+        label.textColor = .black
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -31,9 +32,10 @@ class FirstScreenViewController: UIViewController {
     
     private var labelDescriptions: UILabel = {
         let label = UILabel()
-        label.text = "APOD Discription"
-        label.backgroundColor = .green
+        label.backgroundColor = .white
+        label.textColor = .black
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -65,19 +67,21 @@ class FirstScreenViewController: UIViewController {
         NSLayoutConstraint.activate([
             labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            labelTitle.widthAnchor.constraint(equalToConstant: 200),
-            labelTitle.heightAnchor.constraint(equalToConstant: 200),
+            labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            
+         
             
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
-            imageView.widthAnchor.constraint(equalToConstant: 200),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
+            imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
+//            imageView.widthAnchor.constraint(equalToConstant: 200),
+//            imageView.heightAnchor.constraint(equalToConstant: 200),
             
             labelDescriptions.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelDescriptions.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            labelDescriptions.widthAnchor.constraint(equalToConstant: 200),
-            labelDescriptions.heightAnchor.constraint(equalToConstant: 200),
-            
+            labelDescriptions.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            labelDescriptions.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            labelDescriptions.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
@@ -89,6 +93,8 @@ class FirstScreenViewController: UIViewController {
                     if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
                         DispatchQueue.main.async {
                             self?.imageView.image = UIImage(data: data)
+                            self?.labelTitle.text = apod.title
+                            self?.labelDescriptions.text = apod.explanation
                         }
                     }
                 }
@@ -100,6 +106,8 @@ class FirstScreenViewController: UIViewController {
         })
     }
 }
+
+
                                 
 private extension FirstScreenViewController {
             func showAlert(){
