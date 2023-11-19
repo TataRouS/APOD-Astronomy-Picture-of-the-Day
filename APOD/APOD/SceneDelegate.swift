@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let tabBarController = UITabBarController()
         
-        let viewController = FirstScreenViewController()
+        let viewController = ApodView()
         let newViewController = SecondScreenViewController()
         let favoriteControler = FavoriteScreenViewController()
         
