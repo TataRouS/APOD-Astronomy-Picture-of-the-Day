@@ -13,14 +13,12 @@ protocol ApodPresenterDelegate: AnyObject {
     func showAlert()
 }
 
-typealias PresenterDelegate = ApodPresenterDelegate & UIViewController
-
 class ApodPresenter {
-    
+    typealias PresenterDelegate = ApodPresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
     
-    public func getImage(){
+    private func getImage(){
         networkService.getImage(completion: {[weak self] result in
             switch result {
             case .success(let apod):
@@ -34,8 +32,10 @@ class ApodPresenter {
             }
         })
     }
-    
-    public func setViewDelegate(delegate: PresenterDelegate){
-        self.delegate = delegate
+}
+
+extension ApodPresenter: ApodPresenterProtocol {
+    func viewDidLoad() {
+        getImage()
     }
 }

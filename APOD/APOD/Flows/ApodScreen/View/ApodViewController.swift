@@ -7,8 +7,18 @@
 
 import UIKit
 
-class ApodView: UIViewController, ApodPresenterDelegate {
-   
+protocol ApodPresenterProtocol {
+    func viewDidLoad()
+}
+
+class ApodViewController: UIViewController {
+    
+    //MARK: - Properties
+    
+    var presenter: ApodPresenterProtocol?
+    
+    //MARK: - Private properties
+    
     private var labelTitle: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -35,34 +45,37 @@ class ApodView: UIViewController, ApodPresenterDelegate {
         return label
     }()
     
+    
+    //MARK: - Construction
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has nit been implemented")
     }
     
-    private var apodPresenter = ApodPresenter()
+    //MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         setupViews()
-        
-        apodPresenter.setViewDelegate(delegate: self)
-        apodPresenter.getImage()
+        presenter?.viewDidLoad()
     }
     
-    func setupViews() {
+    //MARK: - Functions
+    
+    //MARK: - Private functions
+    
+    private func setupViews() {
         view.addSubview(labelTitle)
         view.addSubview(imageView)
         view.addSubview(labelDescriptions)
         setupConstraints()
     }
-    
-    
     
     private func setupConstraints() {
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -89,8 +102,9 @@ class ApodView: UIViewController, ApodPresenterDelegate {
             labelDescriptions.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-    
-    
+}
+
+extension ApodViewController: ApodPresenterDelegate {
     func presentImage(apod: DataImage, data: Data){
         DispatchQueue.main.async {
             self.imageView.image = UIImage(data: data)
@@ -100,15 +114,13 @@ class ApodView: UIViewController, ApodPresenterDelegate {
         }
     }
     
-    
-        func showAlert(){
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Не удалось получить данные",
-                                              message: "Данные актуальны",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+    func showAlert(){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Не удалось получить данные",
+                                          message: "Данные актуальны",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
-
+}
