@@ -1,19 +1,19 @@
 //
-//  ApodPresenter.swift
+//  DataPicturePresenter.swift
 //  APOD
 //
-//  Created by Nata Kuznetsova on 17.11.2023.
+//  Created by Irina on 26.11.2023.
 //
 
 import UIKit
 
-protocol ApodPresenterDelegate: AnyObject {
-    func presentImage(apod: DataImage, data: Data)
+protocol DataPicturePresenterDelegate: AnyObject {
+    func updateUI(with photoinfo: DataImage)
     func showAlert()
 }
 
-class ApodPresenter {
-    typealias PresenterDelegate = ApodPresenterDelegate & UIViewController
+class DataPicturePresenter {
+    typealias PresenterDelegate = DataPicturePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
     
@@ -23,7 +23,7 @@ class ApodPresenter {
             case .success(let apod):
                 DispatchQueue.global ().async {
                     if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
-                        self?.delegate?.presentImage(apod: apod, data: data)
+                        self?.delegate?.updateUI(with: apod)
                     }
                 }
             case .failure(_):
@@ -33,7 +33,7 @@ class ApodPresenter {
     }
 }
 
-extension ApodPresenter: ApodPresenterProtocol {
+extension DataPicturePresenter: DataPicturePresenterProtocol {
     func viewDidLoad() {
         getImage()
     }

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         
         let viewController = ApodScreenBuilder.build()
-        let newViewController = SecondScreenViewController()
+        let newViewController = DataPictureBuilder.build()
         let favoriteControler = FavoriteScreenViewController()
         
         viewController.tabBarItem.title = "APOD"
@@ -27,7 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         favoriteControler.tabBarItem.title = "Favorite"
         favoriteControler.tabBarItem.image = UIImage(systemName: "heart.circle")
         
-        let controllers = [viewController, newViewController, favoriteControler]
+        let controllers = [viewController, 
+                           newViewController,
+                           favoriteControler]
         
         tabBarController.viewControllers = controllers
         

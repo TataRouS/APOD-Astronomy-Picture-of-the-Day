@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C1B40662AF6656C00E4231A /* SecondScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */; };
+		8C08207F2B1287A3001D3B22 /* DataPictureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08207E2B1287A3001D3B22 /* DataPictureBuilder.swift */; };
+		8C1B40662AF6656C00E4231A /* DataPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* DataPictureViewController.swift */; };
 		8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
-		8C1B406A2AF669EA00E4231A /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40692AF669EA00E4231A /* NetworkController.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */; };
 		BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */; };
@@ -22,7 +22,7 @@
 		BD42F08A2ADDA183006C0518 /* APODUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F0892ADDA183006C0518 /* APODUITests.swift */; };
 		BD42F08C2ADDA183006C0518 /* APODUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F08B2ADDA183006C0518 /* APODUITestsLaunchTests.swift */; };
 		BD439B022B07F94B00814B15 /* ApodPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B012B07F94B00814B15 /* ApodPresenter.swift */; };
-		BD439B062B0F745900814B15 /* AposdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B052B0F745900814B15 /* AposdPresenter.swift */; };
+		BD439B062B0F745900814B15 /* DataPicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B052B0F745900814B15 /* DataPicturePresenter.swift */; };
 		BD439B0F2B0FC66900814B15 /* ApodScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B0E2B0FC66900814B15 /* ApodScreenBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScreenViewController.swift; sourceTree = "<group>"; };
+		8C08207E2B1287A3001D3B22 /* DataPictureBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPictureBuilder.swift; sourceTree = "<group>"; };
+		8C1B40652AF6656C00E4231A /* DataPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPictureViewController.swift; sourceTree = "<group>"; };
 		8C1B40672AF6698B00E4231A /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
-		8C1B40692AF669EA00E4231A /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreenViewController.swift; sourceTree = "<group>"; };
 		BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServieceProtocol.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		BD42F0892ADDA183006C0518 /* APODUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODUITests.swift; sourceTree = "<group>"; };
 		BD42F08B2ADDA183006C0518 /* APODUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BD439B012B07F94B00814B15 /* ApodPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodPresenter.swift; sourceTree = "<group>"; };
-		BD439B052B0F745900814B15 /* AposdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AposdPresenter.swift; sourceTree = "<group>"; };
+		BD439B052B0F745900814B15 /* DataPicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicturePresenter.swift; sourceTree = "<group>"; };
 		BD439B0E2B0FC66900814B15 /* ApodScreenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodScreenBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,11 +92,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C08207D2B128768001D3B22 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				8C08207E2B1287A3001D3B22 /* DataPictureBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		8C6C9DCC2AEBBF4A00B87D6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */,
-				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,7 +113,6 @@
 			children = (
 				BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */,
 				BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */,
-				8C1B40692AF669EA00E4231A /* NetworkController.swift */,
 			);
 			path = NetworkServiece;
 			sourceTree = "<group>";
@@ -136,6 +142,7 @@
 			children = (
 				BD439AFD2B06964E00814B15 /* Flows */,
 				8C6C9DCC2AEBBF4A00B87D6D /* Model */,
+				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 				BD42F0682ADDA182006C0518 /* AppDelegate.swift */,
 				BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */,
 				8C1B40672AF6698B00E4231A /* URLExtension.swift */,
@@ -165,9 +172,9 @@
 		BD439AFD2B06964E00814B15 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B0A2B0FC52E00814B15 /* Favorite */,
-				BD439B072B0FC4D000814B15 /* AposdScreen */,
 				BD439AFE2B06966300814B15 /* ApodScreen */,
+				BD439B072B0FC4D000814B15 /* AposdScreen */,
+				BD439B0A2B0FC52E00814B15 /* Favorite */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -201,6 +208,7 @@
 		BD439B072B0FC4D000814B15 /* AposdScreen */ = {
 			isa = PBXGroup;
 			children = (
+				8C08207D2B128768001D3B22 /* Builder */,
 				BD439B082B0FC4EC00814B15 /* Presenter */,
 				BD439B092B0FC4FD00814B15 /* View */,
 			);
@@ -210,7 +218,7 @@
 		BD439B082B0FC4EC00814B15 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B052B0F745900814B15 /* AposdPresenter.swift */,
+				BD439B052B0F745900814B15 /* DataPicturePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -218,7 +226,7 @@
 		BD439B092B0FC4FD00814B15 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8C1B40652AF6656C00E4231A /* SecondScreenViewController.swift */,
+				8C1B40652AF6656C00E4231A /* DataPictureViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,14 +396,14 @@
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
+				8C08207F2B1287A3001D3B22 /* DataPictureBuilder.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
 				BD439B0F2B0FC66900814B15 /* ApodScreenBuilder.swift in Sources */,
-				8C1B40662AF6656C00E4231A /* SecondScreenViewController.swift in Sources */,
+				8C1B40662AF6656C00E4231A /* DataPictureViewController.swift in Sources */,
 				8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */,
 				BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */,
 				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
-				8C1B406A2AF669EA00E4231A /* NetworkController.swift in Sources */,
-				BD439B062B0F745900814B15 /* AposdPresenter.swift in Sources */,
+				BD439B062B0F745900814B15 /* DataPicturePresenter.swift in Sources */,
 				BD439B022B07F94B00814B15 /* ApodPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
