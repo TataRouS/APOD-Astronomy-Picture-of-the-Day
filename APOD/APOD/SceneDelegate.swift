@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         
         let viewController = PictureOfDayBuilder.build()
-        let newViewController = DataPictureBuilder.build()
+        let newViewController = DatePictureBuilder.build()
         let favoriteControler = FavoriteScreenViewController()
         
         viewController.tabBarItem.title = "APOD"

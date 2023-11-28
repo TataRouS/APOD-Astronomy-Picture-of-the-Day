@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol DataPicturePresenterProtocol {
+protocol DatePicturePresenterProtocol {
     func viewDidLoad()
 }
 
-class DataPictureViewController: UIViewController {
+class DatePictureController: UIViewController {
     
     //MARK: - Properties
     
-    var presenter: DataPicturePresenterProtocol?
+    var presenter: DatePicturePresenterProtocol?
     
     //MARK: - Private properties
     
@@ -134,7 +134,7 @@ class DataPictureViewController: UIViewController {
     }
 }
 
-extension DataPictureViewController: DataPicturePresenterDelegate {
+extension DatePictureController: DatePicturePresenterDelegate {
     
     func updateUI(with photoinfo: DataImage){
         networkController.fetchPhoto(from: photoinfo.url!) { [weak self] image in

@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct DataPictureBuilder {
+struct DatePictureBuilder {
     static func build() -> UIViewController {
-        let viewController = DataPictureViewController()
-        let presenter = DataPicturePresenter()
+        let viewController = DatePictureController()
+        let presenter = DatePicturePresenter()
         viewController.presenter = presenter
         presenter.delegate = viewController
         return viewController
