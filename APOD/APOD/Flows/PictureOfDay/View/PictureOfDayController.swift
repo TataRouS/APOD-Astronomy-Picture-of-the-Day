@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol ApodPresenterProtocol {
+protocol PictureOfDayProtocol {
     func viewDidLoad()
 }
 
-class ApodViewController: UIViewController {
+class PictureOfDayController: UIViewController {
     
     //MARK: - Properties
     
-    var presenter: ApodPresenterProtocol?
+    var presenter: PictureOfDayProtocol?
     
     //MARK: - Private properties
     
@@ -104,7 +104,7 @@ class ApodViewController: UIViewController {
     }
 }
 
-extension ApodViewController: ApodPresenterDelegate {
+extension PictureOfDayController: PictureOfDayPresenterDelegate {
     func presentImage(apod: DataImage, data: Data){
         DispatchQueue.main.async {
             self.imageView.image = UIImage(data: data)

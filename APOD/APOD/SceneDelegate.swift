@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let tabBarController = UITabBarController()
         
-        let viewController = ApodScreenBuilder.build()
+        let viewController = PictureOfDayBuilder.build()
         let newViewController = DataPictureBuilder.build()
         let favoriteControler = FavoriteScreenViewController()
         

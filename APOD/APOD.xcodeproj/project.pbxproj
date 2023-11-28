@@ -16,14 +16,14 @@
 		BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
 		BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F0682ADDA182006C0518 /* AppDelegate.swift */; };
 		BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */; };
-		BD42F06D2ADDA182006C0518 /* ApodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F06C2ADDA182006C0518 /* ApodViewController.swift */; };
+		BD42F06D2ADDA182006C0518 /* PictureOfDayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F06C2ADDA182006C0518 /* PictureOfDayController.swift */; };
 		BD42F0722ADDA183006C0518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD42F0712ADDA183006C0518 /* Assets.xcassets */; };
 		BD42F0802ADDA183006C0518 /* APODTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F07F2ADDA183006C0518 /* APODTests.swift */; };
 		BD42F08A2ADDA183006C0518 /* APODUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F0892ADDA183006C0518 /* APODUITests.swift */; };
 		BD42F08C2ADDA183006C0518 /* APODUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD42F08B2ADDA183006C0518 /* APODUITestsLaunchTests.swift */; };
-		BD439B022B07F94B00814B15 /* ApodPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B012B07F94B00814B15 /* ApodPresenter.swift */; };
+		BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B012B07F94B00814B15 /* PictureOfDayPresenter.swift */; };
 		BD439B062B0F745900814B15 /* DataPicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B052B0F745900814B15 /* DataPicturePresenter.swift */; };
-		BD439B0F2B0FC66900814B15 /* ApodScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B0E2B0FC66900814B15 /* ApodScreenBuilder.swift */; };
+		BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		BD42F0652ADDA182006C0518 /* APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD42F0682ADDA182006C0518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD42F06A2ADDA182006C0518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BD42F06C2ADDA182006C0518 /* ApodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodViewController.swift; sourceTree = "<group>"; };
+		BD42F06C2ADDA182006C0518 /* PictureOfDayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayController.swift; sourceTree = "<group>"; };
 		BD42F0712ADDA183006C0518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD42F0762ADDA183006C0518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD42F07B2ADDA183006C0518 /* APODTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,9 +62,9 @@
 		BD42F0852ADDA183006C0518 /* APODUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD42F0892ADDA183006C0518 /* APODUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODUITests.swift; sourceTree = "<group>"; };
 		BD42F08B2ADDA183006C0518 /* APODUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BD439B012B07F94B00814B15 /* ApodPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodPresenter.swift; sourceTree = "<group>"; };
+		BD439B012B07F94B00814B15 /* PictureOfDayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayPresenter.swift; sourceTree = "<group>"; };
 		BD439B052B0F745900814B15 /* DataPicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicturePresenter.swift; sourceTree = "<group>"; };
-		BD439B0E2B0FC66900814B15 /* ApodScreenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodScreenBuilder.swift; sourceTree = "<group>"; };
+		BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,27 +172,27 @@
 		BD439AFD2B06964E00814B15 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				BD439AFE2B06966300814B15 /* ApodScreen */,
-				BD439B072B0FC4D000814B15 /* AposdScreen */,
+				BD439AFE2B06966300814B15 /* PictureOfDay */,
+				BD439B072B0FC4D000814B15 /* DataPicture */,
 				BD439B0A2B0FC52E00814B15 /* Favorite */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
 		};
-		BD439AFE2B06966300814B15 /* ApodScreen */ = {
+		BD439AFE2B06966300814B15 /* PictureOfDay */ = {
 			isa = PBXGroup;
 			children = (
 				BD439B0D2B0FC62500814B15 /*  Builder */,
 				BD439B002B06972100814B15 /* Presentor */,
 				BD439AFF2B06971700814B15 /* View */,
 			);
-			path = ApodScreen;
+			path = PictureOfDay;
 			sourceTree = "<group>";
 		};
 		BD439AFF2B06971700814B15 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BD42F06C2ADDA182006C0518 /* ApodViewController.swift */,
+				BD42F06C2ADDA182006C0518 /* PictureOfDayController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,19 +200,19 @@
 		BD439B002B06972100814B15 /* Presentor */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B012B07F94B00814B15 /* ApodPresenter.swift */,
+				BD439B012B07F94B00814B15 /* PictureOfDayPresenter.swift */,
 			);
 			path = Presentor;
 			sourceTree = "<group>";
 		};
-		BD439B072B0FC4D000814B15 /* AposdScreen */ = {
+		BD439B072B0FC4D000814B15 /* DataPicture */ = {
 			isa = PBXGroup;
 			children = (
 				8C08207D2B128768001D3B22 /* Builder */,
 				BD439B082B0FC4EC00814B15 /* Presenter */,
 				BD439B092B0FC4FD00814B15 /* View */,
 			);
-			path = AposdScreen;
+			path = DataPicture;
 			sourceTree = "<group>";
 		};
 		BD439B082B0FC4EC00814B15 /* Presenter */ = {
@@ -258,7 +258,7 @@
 		BD439B0D2B0FC62500814B15 /*  Builder */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B0E2B0FC66900814B15 /* ApodScreenBuilder.swift */,
+				BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */,
 			);
 			path = " Builder";
 			sourceTree = "<group>";
@@ -392,19 +392,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD42F06D2ADDA182006C0518 /* ApodViewController.swift in Sources */,
+				BD42F06D2ADDA182006C0518 /* PictureOfDayController.swift in Sources */,
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				8C08207F2B1287A3001D3B22 /* DataPictureBuilder.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
-				BD439B0F2B0FC66900814B15 /* ApodScreenBuilder.swift in Sources */,
+				BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */,
 				8C1B40662AF6656C00E4231A /* DataPictureViewController.swift in Sources */,
 				8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */,
 				BD42F06B2ADDA182006C0518 /* SceneDelegate.swift in Sources */,
 				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
 				BD439B062B0F745900814B15 /* DataPicturePresenter.swift in Sources */,
-				BD439B022B07F94B00814B15 /* ApodPresenter.swift in Sources */,
+				BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
