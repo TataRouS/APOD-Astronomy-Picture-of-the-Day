@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-struct ApodScreenBuilder {
+struct  PictureOfDayBuilder {
     static func build() -> UIViewController {
-        let viewController = ApodViewController()
-        let presenter = ApodPresenter()
+        let viewController = PictureOfDayController()
+        let presenter = PictureOfDayPresenter()
         viewController.presenter = presenter
         presenter.delegate = viewController
         return viewController

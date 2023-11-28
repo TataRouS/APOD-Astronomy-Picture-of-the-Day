@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol DataPicturePresenterDelegate: AnyObject {
+protocol DatePicturePresenterDelegate: AnyObject {
     func updateUI(with photoinfo: DataImage)
     func showAlert()
 }
 
-class DataPicturePresenter {
-    typealias PresenterDelegate = DataPicturePresenterDelegate & UIViewController
+class DatePicturePresenter {
+    typealias PresenterDelegate = DatePicturePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
     
@@ -33,7 +33,7 @@ class DataPicturePresenter {
     }
 }
 
-extension DataPicturePresenter: DataPicturePresenterProtocol {
+extension DatePicturePresenter: DatePicturePresenterProtocol {
     func viewDidLoad() {
         getImage()
     }

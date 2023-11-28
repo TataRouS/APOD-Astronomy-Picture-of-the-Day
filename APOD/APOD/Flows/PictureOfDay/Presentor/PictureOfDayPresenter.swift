@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol ApodPresenterDelegate: AnyObject {
+protocol PictureOfDayPresenterDelegate: AnyObject {
     func presentImage(apod: DataImage, data: Data)
     func showAlert()
 }
 
-class ApodPresenter {
-    typealias PresenterDelegate = ApodPresenterDelegate & UIViewController
+class PictureOfDayPresenter {
+    typealias PresenterDelegate = PictureOfDayPresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
     
@@ -33,7 +33,7 @@ class ApodPresenter {
     }
 }
 
-extension ApodPresenter: ApodPresenterProtocol {
+extension PictureOfDayPresenter: PictureOfDayProtocol {
     func viewDidLoad() {
         getImage()
     }
