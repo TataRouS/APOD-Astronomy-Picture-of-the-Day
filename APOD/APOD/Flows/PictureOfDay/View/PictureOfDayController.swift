@@ -24,23 +24,29 @@ class PictureOfDayController: UIViewController {
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         label.numberOfLines = 0
         return label
     }()
     
     
     private var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .yellow
+       // let imageView = UIImageView()
+        let imageView = UIImageView(image: UIImage(named: "startImage"))
+        //imageView.backgroundColor = .yellow
         return imageView
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
     
     private var labelDescriptions: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .justified
         label.numberOfLines = 0
         return label
     }()
@@ -73,13 +79,15 @@ class PictureOfDayController: UIViewController {
     private func setupViews() {
         view.addSubview(labelTitle)
         view.addSubview(imageView)
-        view.addSubview(labelDescriptions)
+        view.addSubview(scrollView)
+        scrollView.addSubview(labelDescriptions)
         setupConstraints()
     }
     
     private func setupConstraints() {
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -87,19 +95,21 @@ class PictureOfDayController: UIViewController {
             labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             
-            
-            
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
-            //            imageView.widthAnchor.constraint(equalToConstant: 200),
-            //            imageView.heightAnchor.constraint(equalToConstant: 200),
             
-            labelDescriptions.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelDescriptions.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            labelDescriptions.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
 }
