@@ -25,20 +25,35 @@ class DatePictureController: UIViewController {
         label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         return label
     }()
     
     private var imageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.backgroundColor = .yellow
         return imageView
+    }()
+    
+    private var labelTitleDate: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textColor = .black
+        label.textAlignment = .center
+        label.text = "Select a date"
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        return label
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
     }()
     
     private var labelDescriptions: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .justified
         label.numberOfLines = 0
         return label
     }()
@@ -47,10 +62,10 @@ class DatePictureController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = .white
         datePicker.datePickerMode = .date
-        //datePicker.tintColor = .white
         
-        datePicker.addTarget(self, action: #selector(datePickerAction(sender:)), for: .valueChanged)
-        //datePicker.preferredDatePickerStyle = .compact
+        datePicker.addTarget(self, 
+                             action: #selector(datePickerAction(sender:)),
+                             for: .valueChanged)
         return datePicker
     }()
     
@@ -91,8 +106,11 @@ class DatePictureController: UIViewController {
     private func setupViews() {
         view.addSubview(labelTitle)
         view.addSubview(imageView)
-        view.addSubview(labelDescriptions)
+        view.addSubview(labelTitleDate)
         view.addSubview(dateLabel)
+        view.addSubview(scrollView)
+        scrollView.addSubview(labelDescriptions)
+        
         setupConstraints()
     }
     
@@ -101,26 +119,37 @@ class DatePictureController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        labelTitleDate.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            dateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelTitleDate.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
+            labelTitleDate.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+        
             dateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             
-            labelDescriptions.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelDescriptions.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
-            labelDescriptions.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     
