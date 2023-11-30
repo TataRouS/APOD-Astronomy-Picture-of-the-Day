@@ -9,6 +9,7 @@ import UIKit
 
 protocol PictureOfDayProtocol {
     func viewDidLoad()
+    func didTapRetryButton()
 }
 
 class PictureOfDayController: UIViewController {
@@ -20,40 +21,17 @@ class PictureOfDayController: UIViewController {
     
     //MARK: - Private properties
     
-    private var labelTitle: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.numberOfLines = 0
-        return label
+    private var contentView: PictureOfDayContentView = {
+        let view = PictureOfDayContentView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private var favorite: UIImageView = {
-        let favorite = UIImageView(image: UIImage(systemName: "star"))
-        return favorite
+    private var loadingView: PictureOfDayLoadingView = {
+        let view = PictureOfDayLoadingView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-    
-    private var imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "startImage"))
-        return imageView
-    }()
-    
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
-    
-    private var labelDescriptions: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .justified
-        label.numberOfLines = 0
-        return label
-    }()
-    
     
     //MARK: - Construction
     
@@ -73,83 +51,74 @@ class PictureOfDayController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         presenter?.viewDidLoad()
-   //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
+        //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
     }
     
     //MARK: - Functions
     
     //MARK: - Private functions
-    
     private func setupViews() {
-        view.addSubview(labelTitle)
-        view.addSubview(favorite)
-        //     favorite.addGestureRecognizer(gestureRecognizer)
-        view.addSubview(imageView)
-        view.addSubview(scrollView)
-        scrollView.addSubview(labelDescriptions)
-        setupConstraints()
+        setupContentView()
+        setupLoadingView()
     }
     
-    private func setupConstraints() {
-        labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        favorite.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
+    private func setupContentView(){
+        view.addSubview(contentView)
         
         NSLayoutConstraint.activate([
-            labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            
-            favorite.widthAnchor.constraint(equalToConstant: 30),
-            favorite.heightAnchor.constraint(equalTo: favorite.widthAnchor),
-            favorite.bottomAnchor.constraint(equalTo: labelTitle.bottomAnchor),
-            favorite.trailingAnchor.constraint(equalTo: labelTitle.trailingAnchor, constant: -30),
-
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
-            imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
-            
-            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            
-            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    private func setupLoadingView(){
+        view.addSubview(loadingView)
+    
+        NSLayoutConstraint.activate([
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
+  
 
 extension PictureOfDayController: PictureOfDayPresenterDelegate {
-    func presentImage(apod: DataImage, data: Data){
-        DispatchQueue.main.async {
-            self.imageView.image = UIImage(data: data)
-            self.labelTitle.text = apod.title
-            self.labelDescriptions.text = apod.explanation
-            
-        }
+    func showLoaderState() {
+        contentView.isHidden = true
+        loadingView.isHidden = false
     }
-
-//    @objc func update() {
-//        updateView(friendsList: self.models)
-//    }
-    // onTape вызываю преззентер, передаю параметром инфо о картинке.  func addFavorite
-   //     @objc func tap(_ recognizer: UIPanGestureRecognizer) {}
     
+    func showErorState() {
+        
+    }
     
-    func showAlert(){
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Не удалось получить данные",
-                                          message: "Данные актуальны",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Закрыть", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+    func presentImage(apod: DataImage, data: Data){
+        contentView.presentImage(apod: apod, data: data)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.contentView.isHidden = false
+            self.loadingView.isHidden = true
+            }
     }
 }
+    
+    //    @objc func update() {
+    //        updateView(friendsList: self.models)
+    //    }
+    // onTape вызываю преззентер, передаю параметром инфо о картинке.  func addFavorite
+    //     @objc func tap(_ recognizer: UIPanGestureRecognizer) {}
+    
+    
+extension PictureOfDayController: PictureOfDayErrorViewDelegate {
+    
+    func didTapRetryButton() {
+        presenter?.didTapRetryButton()
+    }
+}
+

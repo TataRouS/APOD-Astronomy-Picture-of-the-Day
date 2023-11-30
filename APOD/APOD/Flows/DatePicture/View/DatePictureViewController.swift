@@ -75,16 +75,7 @@ class DatePictureController: UIViewController {
         return datePicker
     }()
     
-    @objc func datePickerAction(sender: UIDatePicker) {
-        let selectedDate = dateFormatter.string(from: sender.date)
-        
-        networkController.fetchPhotoInfo(date: selectedDate) { [weak self] photoInfo in
-            if let photoInfo = photoInfo {
-                self?.updateUI(with: photoInfo)
-            }
-        }
-    }
-    
+
     //MARK: - Construction
     
     init() {
@@ -106,6 +97,16 @@ class DatePictureController: UIViewController {
     }
     
     //MARK: - Functions
+    
+    @objc func datePickerAction(sender: UIDatePicker) {
+        let selectedDate = dateFormatter.string(from: sender.date)
+        
+        networkController.fetchPhotoInfo(date: selectedDate) { [weak self] photoInfo in
+            if let photoInfo = photoInfo {
+                self?.updateUI(with: photoInfo)
+            }
+        }
+    }
     
     //MARK: - Private functions
     

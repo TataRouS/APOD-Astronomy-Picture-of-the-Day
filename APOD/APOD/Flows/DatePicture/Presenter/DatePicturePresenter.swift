@@ -35,6 +35,6 @@ class DatePicturePresenter {
 
 extension DatePicturePresenter: DatePicturePresenterProtocol {
     func viewDidLoad() {
-        getImage()
+    //    getImage()
     }
 }
