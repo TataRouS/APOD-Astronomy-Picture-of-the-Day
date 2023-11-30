@@ -16,6 +16,7 @@ class PictureOfDayController: UIViewController {
     //MARK: - Properties
     
     var presenter: PictureOfDayProtocol?
+    //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
     
     //MARK: - Private properties
     
@@ -29,11 +30,13 @@ class PictureOfDayController: UIViewController {
         return label
     }()
     
+    private var favorite: UIImageView = {
+        let favorite = UIImageView(image: UIImage(systemName: "star"))
+        return favorite
+    }()
     
     private var imageView: UIImageView = {
-       // let imageView = UIImageView()
         let imageView = UIImageView(image: UIImage(named: "startImage"))
-        //imageView.backgroundColor = .yellow
         return imageView
     }()
     
@@ -70,6 +73,7 @@ class PictureOfDayController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         presenter?.viewDidLoad()
+   //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
     }
     
     //MARK: - Functions
@@ -78,6 +82,8 @@ class PictureOfDayController: UIViewController {
     
     private func setupViews() {
         view.addSubview(labelTitle)
+        view.addSubview(favorite)
+        //     favorite.addGestureRecognizer(gestureRecognizer)
         view.addSubview(imageView)
         view.addSubview(scrollView)
         scrollView.addSubview(labelDescriptions)
@@ -86,6 +92,7 @@ class PictureOfDayController: UIViewController {
     
     private func setupConstraints() {
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
+        favorite.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
@@ -95,6 +102,11 @@ class PictureOfDayController: UIViewController {
             labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             
+            favorite.widthAnchor.constraint(equalToConstant: 30),
+            favorite.heightAnchor.constraint(equalTo: favorite.widthAnchor),
+            favorite.bottomAnchor.constraint(equalTo: labelTitle.bottomAnchor),
+            favorite.trailingAnchor.constraint(equalTo: labelTitle.trailingAnchor, constant: -30),
+
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
@@ -123,6 +135,13 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
             
         }
     }
+
+//    @objc func update() {
+//        updateView(friendsList: self.models)
+//    }
+    // onTape вызываю преззентер, передаю параметром инфо о картинке.  func addFavorite
+   //     @objc func tap(_ recognizer: UIPanGestureRecognizer) {}
+    
     
     func showAlert(){
         DispatchQueue.main.async {

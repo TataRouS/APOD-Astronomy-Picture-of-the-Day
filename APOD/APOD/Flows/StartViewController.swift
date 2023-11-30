@@ -43,7 +43,7 @@ class StartViewController: UIViewController {
         vc2.tabBarItem.image = UIImage(systemName: "photo.on.rectangle")
         
         vc3.tabBarItem.title = "Favorite"
-        vc3.tabBarItem.image = UIImage(systemName: "star")
+        vc3.tabBarItem.image = UIImage(systemName: "star.fill")
         
         tabBarVC.setViewControllers([vc1, vc2, vc3], animated: false)
         

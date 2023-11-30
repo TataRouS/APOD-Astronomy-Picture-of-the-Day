@@ -10,6 +10,7 @@ import UIKit
 protocol PictureOfDayPresenterDelegate: AnyObject {
     func presentImage(apod: DataImage, data: Data)
     func showAlert()
+    //func favorite()
 }
 
 class PictureOfDayPresenter {
@@ -31,7 +32,13 @@ class PictureOfDayPresenter {
             }
         })
     }
+    //func addFavorite{
+    //func favorite()
+    //FileFavoriteCache.addPicture()
+    //}
 }
+
+
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
     func viewDidLoad() {
