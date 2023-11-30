@@ -9,8 +9,11 @@ import UIKit
 
 protocol PictureOfDayPresenterDelegate: AnyObject {
     func presentImage(apod: DataImage, data: Data)
-    func showAlert()
+  //  func showAlert()
+    func showLoaderState()
+    func showErorState()
     //func favorite()
+  
 }
 
 class PictureOfDayPresenter {
@@ -19,6 +22,7 @@ class PictureOfDayPresenter {
     private var networkService = NetworkService()
     
     private func getImage(){
+        delegate?.showLoaderState()
         networkService.getImage(completion: {[weak self] result in
             switch result {
             case .success(let apod):
@@ -28,7 +32,7 @@ class PictureOfDayPresenter {
                     }
                 }
             case .failure(_):
-                self?.delegate?.showAlert()
+                self?.delegate?.showErorState()
             }
         })
     }
@@ -41,6 +45,10 @@ class PictureOfDayPresenter {
 
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
+    func didTapRetryButton() {
+        getImage()
+    }
+    
     func viewDidLoad() {
         getImage()
     }

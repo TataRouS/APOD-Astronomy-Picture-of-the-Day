@@ -29,6 +29,9 @@
 		BD439B172B179E9600814B15 /* APODDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD439B152B179E9600814B15 /* APODDataModel.xcdatamodeld */; };
 		BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */; };
 		BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1A2B17B18900814B15 /* FavoriteCell.swift */; };
+		BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */; };
+		BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */; };
+		BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		BD439B162B179E9600814B15 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFavoriteCache.swift; sourceTree = "<group>"; };
 		BD439B1A2B17B18900814B15 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayContentView.swift; sourceTree = "<group>"; };
+		BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayErrorView.swift; sourceTree = "<group>"; };
+		BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				BD42F06C2ADDA182006C0518 /* PictureOfDayController.swift */,
+				BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */,
+				BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */,
+				BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -417,6 +426,7 @@
 			files = (
 				BD42F06D2ADDA182006C0518 /* PictureOfDayController.swift in Sources */,
 				8C432C6E2B171FFE00D2DDBA /* StartViewController.swift in Sources */,
+				BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */,
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
@@ -431,6 +441,8 @@
 				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
 				BD439B062B0F745900814B15 /* DatePicturePresenter.swift in Sources */,
 				BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */,
+				BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */,
+				BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */,
 				BD439B132B179BD800814B15 /* FavoritePicturePresenter.swift in Sources */,
 				BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */,
 			);
