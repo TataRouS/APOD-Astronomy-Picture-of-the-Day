@@ -40,6 +40,7 @@ class DatePictureController: UIViewController {
         label.textColor = .systemBlue
         label.textAlignment = .center
         label.text = "Select a date"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         //label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         return label
     }()
@@ -132,8 +133,20 @@ class DatePictureController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
+            labelTitleDate.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            labelTitleDate.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            labelTitleDate.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor),
+            
+            button.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            button.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor),
+            
+            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            
             labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            labelTitle.topAnchor.constraint(equalTo: labelTitleDate.bottomAnchor, constant: 20),
             labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
             
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -143,16 +156,8 @@ class DatePictureController: UIViewController {
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
-            labelTitleDate.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
-            labelTitleDate.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             
-            button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-        
-            dateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
-            
-            scrollView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),

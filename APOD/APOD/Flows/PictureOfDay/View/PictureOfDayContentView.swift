@@ -26,7 +26,7 @@ class PictureOfDayContentView: UIView {
     }()
     
     private var imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "startImage"))
+        let imageView = UIImageView()
         return imageView
     }()
     
@@ -81,18 +81,19 @@ class PictureOfDayContentView: UIView {
         
         NSLayoutConstraint.activate([
             labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            labelTitle.widthAnchor.constraint(equalToConstant: frame.size.width),
+            labelTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             
             favorite.widthAnchor.constraint(equalToConstant: 30),
             favorite.heightAnchor.constraint(equalTo: favorite.widthAnchor),
-            favorite.bottomAnchor.constraint(equalTo: labelTitle.bottomAnchor),
-            favorite.trailingAnchor.constraint(equalTo: labelTitle.trailingAnchor, constant: -30),
+            favorite.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            favorite.leadingAnchor.constraint(equalTo: labelTitle.trailingAnchor, constant: 20),
 
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: frame.size.width),
-            imageView.heightAnchor.constraint(equalToConstant: frame.size.width),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             
             scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
