@@ -10,6 +10,7 @@
 		8C08207F2B1287A3001D3B22 /* DatePictureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08207E2B1287A3001D3B22 /* DatePictureBuilder.swift */; };
 		8C1B40662AF6656C00E4231A /* DatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */; };
 		8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
+		8C34BEFA2B19D8FE00D32F97 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BEF92B19D8FE00D32F97 /* Launch Screen.storyboard */; };
 		8C432C6E2B171FFE00D2DDBA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */; };
@@ -55,6 +56,7 @@
 		8C08207E2B1287A3001D3B22 /* DatePictureBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureBuilder.swift; sourceTree = "<group>"; };
 		8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureViewController.swift; sourceTree = "<group>"; };
 		8C1B40672AF6698B00E4231A /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
+		8C34BEF92B19D8FE00D32F97 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreenViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 				BD439B142B179E7E00814B15 /* CoreData */,
 				BD42F0712ADDA183006C0518 /* Assets.xcassets */,
+				8C34BEF92B19D8FE00D32F97 /* Launch Screen.storyboard */,
 				BD42F0762ADDA183006C0518 /* Info.plist */,
 			);
 			path = APOD;
@@ -399,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C34BEFA2B19D8FE00D32F97 /* Launch Screen.storyboard in Resources */,
 				BD42F0722ADDA183006C0518 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
