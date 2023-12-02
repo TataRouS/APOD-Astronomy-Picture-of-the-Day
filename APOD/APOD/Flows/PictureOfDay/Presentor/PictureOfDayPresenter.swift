@@ -12,7 +12,6 @@ protocol PictureOfDayPresenterDelegate: AnyObject {
   //  func showAlert()
     func showLoaderState()
     func showErorState()
-    //func favorite()
   
 }
 
@@ -20,6 +19,7 @@ class PictureOfDayPresenter {
     typealias PresenterDelegate = PictureOfDayPresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
+    private var fileCache = FileFavoriteCache()
     
     private func getImage(){
         delegate?.showLoaderState()
@@ -36,15 +36,21 @@ class PictureOfDayPresenter {
             }
         })
     }
-    //func addFavorite{
-    //func favorite()
-    //FileFavoriteCache.addPicture()
-    //}
 }
 
 
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
+    func deleteFavorite(apod: DataImage) {
+    //    fileCache.deletePicture(apod: apod)
+        print("delete")
+    }
+    
+    
+    func addFavorite(apod: DataImage) {
+        fileCache.addPicture(apod: apod)
+    }
+
     func didTapRetryButton() {
         getImage()
     }

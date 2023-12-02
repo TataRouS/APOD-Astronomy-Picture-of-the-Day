@@ -17,7 +17,10 @@ class DatePictureController: UIViewController {
     
     var presenter: DatePicturePresenterProtocol?
     
+    
     //MARK: - Private properties
+    
+    private var starIsFilled: Bool = false
     
     private var labelTitle: UILabel = {
         let label = UILabel()
@@ -95,6 +98,7 @@ class DatePictureController: UIViewController {
         setupViews()
         setInitView()
         presenter?.viewDidLoad()
+        
     }
     
     //MARK: - Functions
@@ -119,6 +123,10 @@ class DatePictureController: UIViewController {
         view.addSubview(button)
         view.addSubview(scrollView)
         scrollView.addSubview(labelDescriptions)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+      //  let gestureRecognizer = UITapGestureRecognizer()
+  //  gestureRecognizer.addTarget(self, action: #selector(tap))
+        button.addGestureRecognizer(gestureRecognizer)
         
         setupConstraints()
     }
@@ -178,7 +186,19 @@ class DatePictureController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateLabel.maximumDate = .now
     }
-}
+    
+    @objc func tap(){
+        print("Power")
+        if starIsFilled {
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            starIsFilled = false
+        }else{
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            starIsFilled = true
+            }
+    }
+    
+ }
 
 extension DatePictureController: DatePicturePresenterDelegate {
     
@@ -201,4 +221,5 @@ extension DatePictureController: DatePicturePresenterDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
 }

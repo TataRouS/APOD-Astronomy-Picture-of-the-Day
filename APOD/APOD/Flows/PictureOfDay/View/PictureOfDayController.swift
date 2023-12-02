@@ -10,6 +10,8 @@ import UIKit
 protocol PictureOfDayProtocol {
     func viewDidLoad()
     func didTapRetryButton()
+    func addFavorite(apod: DataImage)
+    func deleteFavorite(apod: DataImage)
 }
 
 class PictureOfDayController: UIViewController {
@@ -17,9 +19,10 @@ class PictureOfDayController: UIViewController {
     //MARK: - Properties
     
     var presenter: PictureOfDayProtocol?
-    //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
     
     //MARK: - Private properties
+    
+    private var model: DataImage?
     
     private var contentView: PictureOfDayContentView = {
         let view = PictureOfDayContentView()
@@ -39,7 +42,6 @@ class PictureOfDayController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has nit been implemented")
     }
@@ -51,7 +53,6 @@ class PictureOfDayController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         presenter?.viewDidLoad()
-        //     let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tap(_:)))
     }
     
     //MARK: - Functions
@@ -64,6 +65,7 @@ class PictureOfDayController: UIViewController {
     
     private func setupContentView(){
         view.addSubview(contentView)
+        contentView.onTapPresenterController = onTapFromContentView(toggle:)
         
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -85,7 +87,6 @@ class PictureOfDayController: UIViewController {
     }
 }
   
-
 extension PictureOfDayController: PictureOfDayPresenterDelegate {
     func showLoaderState() {
         contentView.isHidden = true
@@ -105,15 +106,18 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
             self.contentView.isHidden = false
             self.loadingView.isHidden = true
             }
+        model = apod
+    }
+    
+    func onTapFromContentView(toggle: Bool){
+        print("Cache")
+        if toggle {
+            presenter?.addFavorite(apod: model ?? DataImage())
+        }else{
+            presenter?.deleteFavorite(apod: model ?? DataImage())
+        }
     }
 }
-    
-    //    @objc func update() {
-    //        updateView(friendsList: self.models)
-    //    }
-    // onTape вызываю преззентер, передаю параметром инфо о картинке.  func addFavorite
-    //     @objc func tap(_ recognizer: UIPanGestureRecognizer) {}
-    
     
 extension PictureOfDayController: PictureOfDayErrorViewDelegate {
     

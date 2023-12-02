@@ -10,19 +10,24 @@ import UIKit
 
 class PictureOfDayContentView: UIView {
     
+    private var starIsFilled: Bool = false
+    
+    var onTapPresenterController: ((Bool) -> Void)?
+    
     private var labelTitle: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     
-    private var favorite: UIImageView = {
-        let favorite = UIImageView(image: UIImage(systemName: "star"))
-        return favorite
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        return button
     }()
     
     private var imageView: UIImageView = {
@@ -64,8 +69,10 @@ class PictureOfDayContentView: UIView {
     
     private func setupViews() {
         addSubview(labelTitle)
-        addSubview(favorite)
-        //     favorite.addGestureRecognizer(gestureRecognizer)
+        addSubview(button)
+        print("setupViews")
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        button.addGestureRecognizer(gestureRecognizer)
         addSubview(imageView)
         addSubview(scrollView)
         scrollView.addSubview(labelDescriptions)
@@ -74,7 +81,7 @@ class PictureOfDayContentView: UIView {
     
     private func setupConstraints() {
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        favorite.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
@@ -82,12 +89,13 @@ class PictureOfDayContentView: UIView {
         NSLayoutConstraint.activate([
             labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             labelTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            labelTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            favorite.widthAnchor.constraint(equalToConstant: 30),
-            favorite.heightAnchor.constraint(equalTo: favorite.widthAnchor),
-            favorite.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            favorite.leadingAnchor.constraint(equalTo: labelTitle.trailingAnchor, constant: 20),
-
+            button.widthAnchor.constraint(equalToConstant: 30),
+            button.heightAnchor.constraint(equalTo: button.widthAnchor),
+            button.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            button.leadingAnchor.constraint(equalTo: labelTitle.trailingAnchor),
+            
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: frame.size.width),
@@ -107,5 +115,20 @@ class PictureOfDayContentView: UIView {
             labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
+    
+    @objc func tap(){
+        print("Power")
+        if starIsFilled {
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            starIsFilled = false
+        }else{
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            starIsFilled = true
+            }
+        guard let onTapPresenterController = onTapPresenterController
+        else {
+            return
+            }
+        onTapPresenterController(starIsFilled)
+    }
 }
-
