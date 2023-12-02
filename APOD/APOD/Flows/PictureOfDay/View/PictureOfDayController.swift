@@ -36,6 +36,12 @@ class PictureOfDayController: UIViewController {
         return view
     }()
     
+    private var errorView: PictureOfDayErrorView = {
+        let view = PictureOfDayErrorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     //MARK: - Construction
     
     init() {
@@ -61,6 +67,7 @@ class PictureOfDayController: UIViewController {
     private func setupViews() {
         setupContentView()
         setupLoadingView()
+        setupErrorView()
     }
     
     private func setupContentView(){
@@ -85,7 +92,17 @@ class PictureOfDayController: UIViewController {
             loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-}
+    
+    private func setupErrorView(){
+        view.addSubview(errorView)
+    
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }}
   
 extension PictureOfDayController: PictureOfDayPresenterDelegate {
     func showLoaderState() {
@@ -94,7 +111,8 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     }
     
     func showErorState() {
-        
+        errorView.isHidden = true
+        errorView.isHidden = false
     }
     
     func presentImage(apod: DataImage, data: Data){
