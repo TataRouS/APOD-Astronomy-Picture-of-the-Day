@@ -10,9 +10,13 @@ import UIKit
 
 class PictureOfDayContentView: UIView {
     
-    private var starIsFilled: Bool = false
-    
+    //MARK: - Properties
+
     var onTapPresenterController: ((Bool) -> Void)?
+    
+    //MARK: - Private properties
+    
+    private var starIsFilled: Bool = false
     
     private var labelTitle: UILabel = {
         let label = UILabel()
@@ -58,15 +62,34 @@ class PictureOfDayContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Functions
+    
     func presentImage(apod: DataImage, data: Data){
         DispatchQueue.main.async {
             self.imageView.image = UIImage(data: data)
             self.labelTitle.text = apod.title
             self.labelDescriptions.text = apod.explanation
-            
         }
     }
     
+    @objc func tap(){
+        print("Power")
+        if starIsFilled {
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            starIsFilled = false
+        }else{
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            starIsFilled = true
+            }
+        guard let onTapPresenterController = onTapPresenterController
+        else {
+            return
+            }
+        onTapPresenterController(starIsFilled)
+    }
+    
+    //MARK: - Private functions
+
     private func setupViews() {
         addSubview(labelTitle)
         addSubview(button)
@@ -114,21 +137,5 @@ class PictureOfDayContentView: UIView {
             labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
-    }
-    
-    @objc func tap(){
-        print("Power")
-        if starIsFilled {
-            button.setImage(UIImage(systemName: "star"), for: .normal)
-            starIsFilled = false
-        }else{
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            starIsFilled = true
-            }
-        guard let onTapPresenterController = onTapPresenterController
-        else {
-            return
-            }
-        onTapPresenterController(starIsFilled)
     }
 }

@@ -10,12 +10,16 @@ import UIKit
 
 class PictureOfDayLoadingView: UIView {
     
+    //MARK: - Private properties
+    
     private var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView()
         loader.translatesAutoresizingMaskIntoConstraints = false
         loader.startAnimating()
         return loader
     }()
+    
+    //MARK: - ????
     
     override init(frame: CGRect) {
         super.init(frame: frame)

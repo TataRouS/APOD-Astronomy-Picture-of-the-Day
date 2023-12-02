@@ -17,9 +17,13 @@ class FavoriteScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.white
+        navigationItem.title = "Table"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         setupViews()
         tableView.dataSource = self
+        //tableView.delegate = self
     }
 
     //MARK: - Functions
