@@ -34,6 +34,7 @@
 		BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */; };
 		BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */; };
 		BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */; };
+		BD439B3B2B1CC70A00814B15 /* FavoriteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayContentView.swift; sourceTree = "<group>"; };
 		BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayErrorView.swift; sourceTree = "<group>"; };
 		BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayLoadingView.swift; sourceTree = "<group>"; };
+		BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 		BD439B0A2B0FC52E00814B15 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				BD439B392B1CC6E900814B15 /* Builder */,
 				BD439B0B2B0FC54300814B15 /* Presenter */,
 				BD439B0C2B0FC57400814B15 /* View */,
 			);
@@ -299,6 +302,14 @@
 				BD439B152B179E9600814B15 /* APODDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		BD439B392B1CC6E900814B15 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +459,7 @@
 				BD439B172B179E9600814B15 /* APODDataModel.xcdatamodeld in Sources */,
 				8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */,
 				BD439B062B0F745900814B15 /* DatePicturePresenter.swift in Sources */,
+				BD439B3B2B1CC70A00814B15 /* FavoriteBuilder.swift in Sources */,
 				BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */,
 				BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */,
 				BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */,

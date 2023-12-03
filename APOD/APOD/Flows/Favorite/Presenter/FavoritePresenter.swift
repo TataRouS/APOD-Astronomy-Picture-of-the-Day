@@ -8,19 +8,22 @@
 import UIKit
 
 protocol FavoritePresenterDelegate: AnyObject {
-    func reloadData()
+    func showError(error: Error, date: Date)
+    func updateView(apod: [DataImage])
 }
 
 class FavoritePresenter {
-    typealias PresenterDelegate = PictureOfDayPresenterDelegate & UIViewController
+    typealias PresenterDelegate = FavoritePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
     private var fileCache = FileFavoriteCache()
-   
     
-    func getImage(){
-       let models = fileCache.fetchPictures()
+}
+
+extension FavoritePresenter: FavoritePresenterProtocol {
+    func fetchPictures() -> [DataImage] {
+        let models = fileCache.fetchPictures()
+        return models
+    }
     
-            }
-        }
-    
+}
