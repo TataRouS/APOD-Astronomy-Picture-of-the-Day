@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
         viewControllers = [
             generateVC(viewController: PictureOfDayBuilder.build(), title: "APOD", image: UIImage(systemName: "photo")),
             generateVC(viewController: DatePictureBuilder.build(), title: "DateAPOD", image: UIImage(systemName: "photo.on.rectangle")),
-            generateVC(viewController: FavoriteScreenViewController(), title: "Favorite", image: UIImage(systemName: "star.fill"))
+            generateVC(viewController: Favorite(), title: "Favorite", image: UIImage(systemName: "star.fill"))
         ]
     }
     
