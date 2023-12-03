@@ -26,12 +26,14 @@ class PictureOfDayPresenter {
         networkService.getImage(completion: {[weak self] result in
             switch result {
             case .success(let apod):
+                print("getImagePresenterSuccess")
                 DispatchQueue.global ().async {
                     if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
                         self?.delegate?.presentImage(apod: apod, data: data)
                     }
                 }
             case .failure(_):
+                print("getImageErrorPresenterfaiure")
                 self?.delegate?.showErorState()
             }
         })
@@ -45,7 +47,6 @@ extension PictureOfDayPresenter: PictureOfDayProtocol {
     //    fileCache.deletePicture(apod: apod)
         print("delete")
     }
-    
     
     func addFavorite(apod: DataImage) {
         fileCache.addPicture(apod: apod)

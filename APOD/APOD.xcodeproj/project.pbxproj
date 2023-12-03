@@ -13,7 +13,7 @@
 		8C34BEFA2B19D8FE00D32F97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */; };
 		8C432C6E2B171FFE00D2DDBA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
-		8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */; };
+		8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* Favorite.swift */; };
 		8CF58B742B1BB9D9005BCBA1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF58B732B1BB9D9005BCBA1 /* MainTabBarController.swift */; };
 		BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */; };
 		BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
@@ -27,7 +27,7 @@
 		BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B012B07F94B00814B15 /* PictureOfDayPresenter.swift */; };
 		BD439B062B0F745900814B15 /* DatePicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B052B0F745900814B15 /* DatePicturePresenter.swift */; };
 		BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */; };
-		BD439B132B179BD800814B15 /* FavoritePicturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B122B179BD800814B15 /* FavoritePicturePresenter.swift */; };
+		BD439B132B179BD800814B15 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B122B179BD800814B15 /* FavoritePresenter.swift */; };
 		BD439B172B179E9600814B15 /* APODDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD439B152B179E9600814B15 /* APODDataModel.xcdatamodeld */; };
 		BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */; };
 		BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1A2B17B18900814B15 /* FavoriteCell.swift */; };
@@ -60,7 +60,7 @@
 		8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
-		8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreenViewController.swift; sourceTree = "<group>"; };
+		8CB794882AFFADCE00F4964E /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		8CF58B732B1BB9D9005BCBA1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		BD366FCB2AE86BA70068E36C /* NetworkServieceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServieceProtocol.swift; sourceTree = "<group>"; };
 		BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiece.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		BD439B012B07F94B00814B15 /* PictureOfDayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayPresenter.swift; sourceTree = "<group>"; };
 		BD439B052B0F745900814B15 /* DatePicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicturePresenter.swift; sourceTree = "<group>"; };
 		BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayBuilder.swift; sourceTree = "<group>"; };
-		BD439B122B179BD800814B15 /* FavoritePicturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePicturePresenter.swift; sourceTree = "<group>"; };
+		BD439B122B179BD800814B15 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		BD439B162B179E9600814B15 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFavoriteCache.swift; sourceTree = "<group>"; };
 		BD439B1A2B17B18900814B15 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 		BD439B0B2B0FC54300814B15 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B122B179BD800814B15 /* FavoritePicturePresenter.swift */,
+				BD439B122B179BD800814B15 /* FavoritePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 		BD439B0C2B0FC57400814B15 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8CB794882AFFADCE00F4964E /* FavoriteScreenViewController.swift */,
+				8CB794882AFFADCE00F4964E /* Favorite.swift */,
 				BD439B1A2B17B18900814B15 /* FavoriteCell.swift */,
 			);
 			path = View;
@@ -436,7 +436,7 @@
 				8CF58B742B1BB9D9005BCBA1 /* MainTabBarController.swift in Sources */,
 				BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */,
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
-				8CB794892AFFADCE00F4964E /* FavoriteScreenViewController.swift in Sources */,
+				8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				8C08207F2B1287A3001D3B22 /* DatePictureBuilder.swift in Sources */,
 				BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */,
@@ -451,7 +451,7 @@
 				BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */,
 				BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */,
 				BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */,
-				BD439B132B179BD800814B15 /* FavoritePicturePresenter.swift in Sources */,
+				BD439B132B179BD800814B15 /* FavoritePresenter.swift in Sources */,
 				BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

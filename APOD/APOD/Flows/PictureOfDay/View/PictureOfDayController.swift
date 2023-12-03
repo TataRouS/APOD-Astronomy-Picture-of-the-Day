@@ -67,7 +67,7 @@ class PictureOfDayController: UIViewController {
     private func setupViews() {
         setupContentView()
         setupLoadingView()
-       // setupErrorView()
+        setupErrorView()
     }
     
     private func setupContentView(){
@@ -116,6 +116,7 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     }
     
     func presentImage(apod: DataImage, data: Data){
+        print("PresentImage")
         contentView.presentImage(apod: apod, data: data)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
@@ -123,6 +124,7 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
             }
             self.contentView.isHidden = false
             self.loadingView.isHidden = true
+            self.errorView.isHidden = true
             }
         model = apod
     }

@@ -12,7 +12,7 @@ protocol FileCacheProtocol {
     func save()
     func delete(object: NSManagedObject)
     func addPicture (apod: DataImage)
-    func fetchPicture() -> [DataImage]
+    func fetchPictures() -> [DataImage]
 }
 
 final class FileFavoriteCache: FileCacheProtocol {
@@ -60,7 +60,7 @@ final class FileFavoriteCache: FileCacheProtocol {
         save()
     }
     
-    func fetchPicture() -> [DataImage] {
+    func fetchPictures() -> [DataImage] {
         let fetchRequest: NSFetchRequest<PictureModelCD> =
         PictureModelCD.fetchRequest()
         guard let apods = try?

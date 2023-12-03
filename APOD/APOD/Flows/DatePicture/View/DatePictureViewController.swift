@@ -9,6 +9,8 @@ import UIKit
 
 protocol DatePicturePresenterProtocol {
     func viewDidLoad()
+    func addFavorite(apod: DataImage)
+    func deleteFavorite(apod: DataImage)
 }
 
 class DatePictureController: UIViewController {
@@ -19,6 +21,7 @@ class DatePictureController: UIViewController {
     
     
     //MARK: - Private properties
+    private var model: DataImage?
     
     private var starIsFilled: Bool = false
     
@@ -124,8 +127,6 @@ class DatePictureController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(labelDescriptions)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-      //  let gestureRecognizer = UITapGestureRecognizer()
-  //  gestureRecognizer.addTarget(self, action: #selector(tap))
         button.addGestureRecognizer(gestureRecognizer)
         
         setupConstraints()
@@ -192,13 +193,16 @@ class DatePictureController: UIViewController {
         if starIsFilled {
             button.setImage(UIImage(systemName: "star"), for: .normal)
             starIsFilled = false
+            presenter?.deleteFavorite(apod: model ?? DataImage())
         }else{
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
             starIsFilled = true
+            presenter?.addFavorite(apod: model ?? DataImage())
             }
     }
     
  }
+
 
 extension DatePictureController: DatePicturePresenterDelegate {
     
@@ -209,6 +213,7 @@ extension DatePictureController: DatePicturePresenterDelegate {
                 self?.labelTitle.text = photoinfo.title
                 self?.labelDescriptions.text = photoinfo.explanation
             }
+            self?.model = photoinfo
         }
     }
     
