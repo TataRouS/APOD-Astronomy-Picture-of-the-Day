@@ -13,6 +13,7 @@ protocol FileCacheProtocol {
     func delete(object: NSManagedObject)
     func addPicture (apod: DataImage)
     func fetchPictures() -> [DataImage]
+    func checkPictureByDate (apod: DataImage) -> Bool
 }
 
 final class FileFavoriteCache: FileCacheProtocol {
@@ -77,4 +78,26 @@ final class FileFavoriteCache: FileCacheProtocol {
         }
         return favoriteApods
     }
+    
+    func deletePicture(apod: DataImage){
+        let fetchRequest: NSFetchRequest<PictureModelCD> =
+        PictureModelCD.fetchRequest()
+     //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
+        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
+       guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
+            return
+        }
+        for object in result {
+            delete(object:  object)
+            save()
+          //  context.delete(object)
+        }
+    }
+    
+    func checkPictureByDate (apod: DataImage) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
+        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
+        let result = try? persistentContainer.viewContext.fetch(fetchRequest)
+        return result?.first != nil
+        }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PictureOfDayPresenterDelegate: AnyObject {
-    func presentImage(apod: DataImage, data: Data)
+    func presentImage(apod: DataImage, data: Data, isFavorite: Bool)
   //  func showAlert()
     func showLoaderState()
     func showErorState()
@@ -27,9 +27,11 @@ class PictureOfDayPresenter {
             switch result {
             case .success(let apod):
                 print("getImagePresenterSuccess")
+                let checkFavoritePicture = self?.fileCache.checkPictureByDate(apod: apod)
+                print("isFavorite", checkFavoritePicture)
                 DispatchQueue.global ().async {
                     if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
-                        self?.delegate?.presentImage(apod: apod, data: data)
+                        self?.delegate?.presentImage(apod: apod, data: data, isFavorite: checkFavoritePicture ?? false)
                     }
                 }
             case .failure(_):
@@ -44,7 +46,7 @@ class PictureOfDayPresenter {
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
     func deleteFavorite(apod: DataImage) {
-    //    fileCache.deletePicture(apod: apod)
+      fileCache.deletePicture(apod: apod)
         print("delete")
     }
     

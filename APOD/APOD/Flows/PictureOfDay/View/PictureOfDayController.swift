@@ -105,6 +105,7 @@ class PictureOfDayController: UIViewController {
     }}
   
 extension PictureOfDayController: PictureOfDayPresenterDelegate {
+    
     func showLoaderState() {
         contentView.isHidden = true
         loadingView.isHidden = false
@@ -115,9 +116,9 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
         errorView.isHidden = false
     }
     
-    func presentImage(apod: DataImage, data: Data){
+    func presentImage(apod: DataImage, data: Data, isFavorite: Bool){
         print("PresentImage")
-        contentView.presentImage(apod: apod, data: data)
+        contentView.presentImage(apod: apod, data: data, isFilledStar: isFavorite)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
@@ -129,8 +130,8 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
         model = apod
     }
     
-    func presentImageTwo(apod: DataImage, data: Data){
-        contentView.presentImage(apod: apod, data: data)
+    func presentImageTwo(apod: DataImage, data: Data, isFavorite: Bool){
+        contentView.presentImage(apod: apod, data: data, isFilledStar: isFavorite)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
