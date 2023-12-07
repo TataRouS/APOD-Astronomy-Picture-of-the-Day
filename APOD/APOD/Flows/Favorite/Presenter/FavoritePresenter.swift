@@ -26,4 +26,9 @@ extension FavoritePresenter: FavoritePresenterProtocol {
         return models
     }
     
+    func deleteFavorite(apod: DataImage) {
+      fileCache.deletePicture(apod: apod)
+        print("delete")
+    }
+    
 }

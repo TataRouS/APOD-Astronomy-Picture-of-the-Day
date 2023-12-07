@@ -13,27 +13,26 @@ final class FavoriteCell: UITableViewCell {
         return picture
     }()
     
+    
     private var text1: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.textAlignment = .justified
-        label.numberOfLines = 0
         return label
     }()
     
     private var text2: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.textAlignment = .justified
-        label.numberOfLines = 0
         return label
     }()
     
     private let button: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "bin"), for: .normal)
+        button.setImage(UIImage(systemName: "trash.circle"), for: .normal)
         return button
     }()
+    
+    var onTapPresenterController: ((String) -> Void)?
     
     func setupTextLabel(apod: DataImage, picture: UIImage) {
         let title = apod.title
@@ -65,26 +64,45 @@ final class FavoriteCell: UITableViewCell {
     }
     
     private func setupConstraints() {
+        button.translatesAutoresizingMaskIntoConstraints = false
         picture.translatesAutoresizingMaskIntoConstraints = false
         text1.translatesAutoresizingMaskIntoConstraints = false
         text2.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            picture.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            picture.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            
+            button.widthAnchor.constraint(equalToConstant: 30),
+            button.heightAnchor.constraint(equalTo: button.widthAnchor),
+          //  button.topAnchor.constraint(equalTo: text1.topAnchor),
+            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            picture.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+           picture.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            picture.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 10),
             picture.heightAnchor.constraint(equalToConstant: 50),
             picture.widthAnchor.constraint(equalTo: picture.heightAnchor),
             picture.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
             text1.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            text1.leadingAnchor.constraint(equalTo: picture.trailingAnchor, constant: 30),
+            text1.leadingAnchor.constraint(equalTo: picture.trailingAnchor, constant: 10),
             text1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
             
             text2.topAnchor.constraint(equalTo: text1.bottomAnchor, constant: 10),
-            text2.leadingAnchor.constraint(equalTo: picture.trailingAnchor, constant: 30),
+            text2.leadingAnchor.constraint(equalTo: picture.trailingAnchor, constant: 10),
             text2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10)
         ])
     }
+    
+    @objc func tap(){
+        print("PowerDeletefromFAVORITE")
+        guard let onTapPresenterController = onTapPresenterController
+        else {
+            return
+        }
+        onTapPresenterController(text2.text ?? "")
+    }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
