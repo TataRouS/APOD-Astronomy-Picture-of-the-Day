@@ -126,6 +126,7 @@ class DatePictureController: UIViewController {
         view.addSubview(button)
         view.addSubview(scrollView)
         scrollView.addSubview(labelDescriptions)
+        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         button.addGestureRecognizer(gestureRecognizer)
         

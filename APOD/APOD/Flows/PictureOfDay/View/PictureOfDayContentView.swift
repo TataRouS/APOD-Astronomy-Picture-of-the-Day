@@ -11,7 +11,7 @@ import UIKit
 class PictureOfDayContentView: UIView {
     
     //MARK: - Properties
-
+    
     var onTapPresenterController: ((Bool) -> Void)?
     
     //MARK: - Private properties
@@ -64,8 +64,14 @@ class PictureOfDayContentView: UIView {
     
     //MARK: - Functions
     
-    func presentImage(apod: DataImage, data: Data){
+    func presentImage(apod: DataImage, data: Data, isFilledStar: Bool){
         DispatchQueue.main.async {
+            if isFilledStar {
+                self.button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            }else{
+                self.button.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+            self.starIsFilled = isFilledStar
             self.imageView.image = UIImage(data: data)
             self.labelTitle.text = apod.title
             self.labelDescriptions.text = apod.explanation
@@ -80,16 +86,19 @@ class PictureOfDayContentView: UIView {
         }else{
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
             starIsFilled = true
-            }
+        }
         guard let onTapPresenterController = onTapPresenterController
         else {
             return
-            }
+        }
         onTapPresenterController(starIsFilled)
     }
     
+    
+    
     //MARK: - Private functions
-
+    
+    
     private func setupViews() {
         addSubview(labelTitle)
         addSubview(button)
@@ -137,5 +146,15 @@ class PictureOfDayContentView: UIView {
             labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
+    }
+    
+    private func toggleFavorite(starIsFilled: Bool){
+        if starIsFilled {
+            button.setImage(UIImage(systemName: "star"), for: .normal)
+            self.starIsFilled = false
+        }else{
+            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            self.starIsFilled = true
+        }
     }
 }
