@@ -4,12 +4,13 @@
 //
 //  Created by Irina on 11.11.2023.
 //
-  
+
 
 import UIKit
 
 protocol FavoritePresenterProtocol: AnyObject {
     func fetchPictures() -> [DataImage]
+    func deleteFavorite(apod: DataImage)
 }
 
 class Favorite: UITableViewController {
@@ -22,16 +23,16 @@ class Favorite: UITableViewController {
     //MARK: - Private properties
     
     private var models: [DataImage] = []
-
+    
     //MARK: - Construction
     
-//    init() {
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has nit been implemented")
-//    }
+    //    init() {
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
+    //
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has nit been implemented")
+    //    }
     
     //MARK: - Life cycle
     
@@ -42,7 +43,6 @@ class Favorite: UITableViewController {
         tableView.reloadData()
         title = "Favorite"
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: "Cell")
-        
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(update), for: .valueChanged)
     }
@@ -59,6 +59,7 @@ class Favorite: UITableViewController {
         }
         let model = models[indexPath.row]
         print("tableVuewlload", model)
+        cell.onTapPresenterController = onTapDeleteFavorite
         DispatchQueue.global ().async {
             if let url = URL (string: model.hdurl ?? ""), let data = try?
                 Data(contentsOf: url)
@@ -71,8 +72,6 @@ class Favorite: UITableViewController {
                 }
             }
         }
-        //   cell.setupTextLabel(apod: model)
-        
         return cell
         
     }
@@ -86,27 +85,32 @@ class Favorite: UITableViewController {
     
     //MARK: - Private functions
     
-}
-    
-    extension Favorite: FavoritePresenterDelegate {
-        func updateView(apod: [DataImage]) {
-            self.models = apod
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
+    private func onTapDeleteFavorite(date: String){
+        print("Deletefrom3sreen", date)
+        for model in models {
+            if model.date == date {
+                presenter?.deleteFavorite(apod: model)
+                update()
             }
         }
-        
-        func showError(error: Error, date: Date) {
-            print("Error here: ", error)
-//            DispatchQueue.main.async {
-//                self.showAlert(date: date)
-//            }
-        }
-        
     }
+}
+
+extension Favorite: FavoritePresenterDelegate {
+    func updateView(apod: [DataImage]) {
+        self.models = apod
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func showError(error: Error, date: Date) {
+        print("Error here: ", error)
+    }
+}
 
 
 
