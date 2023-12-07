@@ -87,7 +87,9 @@ final class FileFavoriteCache: FileCacheProtocol {
        guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
             return
         }
+        print(result)
         for object in result {
+            print(object)
             delete(object:  object)
             save()
           //  context.delete(object)

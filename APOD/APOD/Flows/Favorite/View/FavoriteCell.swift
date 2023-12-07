@@ -16,13 +16,23 @@ final class FavoriteCell: UITableViewCell {
     private var text1: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.textAlignment = .justified
+        label.numberOfLines = 0
         return label
     }()
     
     private var text2: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.textAlignment = .justified
+        label.numberOfLines = 0
         return label
+    }()
+    
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "bin"), for: .normal)
+        return button
     }()
     
     func setupTextLabel(apod: DataImage, picture: UIImage) {
@@ -48,6 +58,9 @@ final class FavoriteCell: UITableViewCell {
         contentView.addSubview(picture)
         contentView.addSubview(text1)
         contentView.addSubview(text2)
+        contentView.addSubview(button)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        button.addGestureRecognizer(gestureRecognizer)
         setupConstraints()
     }
     
