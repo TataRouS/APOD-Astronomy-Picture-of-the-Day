@@ -108,11 +108,13 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     
     func showLoaderState() {
         contentView.isHidden = true
+        errorView.isHidden = true
         loadingView.isHidden = false
     }
     
     func showErorState() {
         contentView.isHidden = true
+        loadingView.isHidden = true
         errorView.isHidden = false
     }
     

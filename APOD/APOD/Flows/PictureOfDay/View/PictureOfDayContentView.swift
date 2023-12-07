@@ -24,7 +24,7 @@ class PictureOfDayContentView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
     
@@ -41,7 +41,24 @@ class PictureOfDayContentView: UIView {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
+    }()
+    
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    private var headerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private var labelDescriptions: UILabel = {
@@ -52,6 +69,8 @@ class PictureOfDayContentView: UIView {
         label.numberOfLines = 0
         return label
     }()
+    
+    private var scrollViewContentView = UIView()
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -100,14 +119,20 @@ class PictureOfDayContentView: UIView {
     
     
     private func setupViews() {
-        addSubview(labelTitle)
-        addSubview(button)
         print("setupViews")
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         button.addGestureRecognizer(gestureRecognizer)
-        addSubview(imageView)
+        
+        headerStackView.addArrangedSubview(labelTitle)
+        headerStackView.addArrangedSubview(button)
+        
+        stackView.addArrangedSubview(headerStackView)
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(labelDescriptions)
+        scrollViewContentView.addSubview(stackView)
+        scrollView.addSubview(scrollViewContentView)
         addSubview(scrollView)
-        scrollView.addSubview(labelDescriptions)
+        
         setupConstraints()
     }
     
@@ -117,34 +142,35 @@ class PictureOfDayContentView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
+        scrollViewContentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            labelTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            
-            button.widthAnchor.constraint(equalToConstant: 30),
-            button.heightAnchor.constraint(equalTo: button.widthAnchor),
-            button.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            button.leadingAnchor.constraint(equalTo: labelTitle.trailingAnchor),
-            
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
-            imageView.widthAnchor.constraint(equalToConstant: frame.size.width),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            
-            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
-            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            scrollViewContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollViewContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollViewContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollViewContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollViewContentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollViewContentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollViewContentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollViewContentView.bottomAnchor),
+            
+            imageView.widthAnchor.constraint(equalTo: widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: widthAnchor),
+            
+            button.widthAnchor.constraint(equalToConstant: 30),
+            button.heightAnchor.constraint(equalToConstant: 30),
+            
+            headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            labelDescriptions.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            labelDescriptions.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
         ])
     }
     
