@@ -11,6 +11,12 @@ import UIKit
 protocol PictureOfDayErrorViewDelegate: AnyObject {
     func didTapRetryButton()
 }
+
+struct PictureOfDayErrorViewModel {
+    let title: String
+    let subtitle: String?
+    let buttonTitle: String
+}
     
 class PictureOfDayErrorView: UIView {
     
@@ -20,11 +26,19 @@ class PictureOfDayErrorView: UIView {
     
     //MARK: - Private properties
 
-    private var label: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .red
         label.textAlignment = .center
-        //label.backgroundColor = .white
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.text = "Oшибка загрузки данных из сети"
+        return label
+    }()
+    
+    private var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         label.text = "Oшибка загрузки данных из сети"
         return label
@@ -41,7 +55,13 @@ class PictureOfDayErrorView: UIView {
         return button
     }()
     
-    //MARK: - Functions
+    // MARK: - Functions
+    
+    func setupData(_ model: PictureOfDayErrorViewModel) {
+        titleLabel.text = model.title
+        subtitleLabel.text = model.subtitle
+        button.setTitle(model.buttonTitle, for: .normal)
+    }
     
     @objc func didTapButton() {
         delegate?.didTapRetryButton()
@@ -50,21 +70,21 @@ class PictureOfDayErrorView: UIView {
     //MARK: - Private functions
     
     private func setupViews() {
-        addSubview(label)
+        addSubview(titleLabel)
         addSubview(button)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
-        label.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 40),
+            button.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
             button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }

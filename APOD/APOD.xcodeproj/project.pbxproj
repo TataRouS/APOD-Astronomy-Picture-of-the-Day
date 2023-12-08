@@ -35,6 +35,7 @@
 		BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */; };
 		BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */; };
 		BD439B3B2B1CC70A00814B15 /* FavoriteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */; };
+		DDA944C02B23BAB500C7C947 /* PictureOfDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA944BF2B23BAB500C7C947 /* PictureOfDayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayErrorView.swift; sourceTree = "<group>"; };
 		BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayLoadingView.swift; sourceTree = "<group>"; };
 		BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBuilder.swift; sourceTree = "<group>"; };
+		DDA944BF2B23BAB500C7C947 /* PictureOfDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 		BD439AFE2B06966300814B15 /* PictureOfDay */ = {
 			isa = PBXGroup;
 			children = (
+				DDA944BE2B23BA8700C7C947 /* Model */,
 				BD439B0D2B0FC62500814B15 /*  Builder */,
 				BD439B002B06972100814B15 /* Presentor */,
 				BD439AFF2B06971700814B15 /* View */,
@@ -310,6 +313,14 @@
 				BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		DDA944BE2B23BA8700C7C947 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDA944BF2B23BAB500C7C947 /* PictureOfDayViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +462,7 @@
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				8C08207F2B1287A3001D3B22 /* DatePictureBuilder.swift in Sources */,
 				BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */,
+				DDA944C02B23BAB500C7C947 /* PictureOfDayViewModel.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
 				BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */,
 				8C1B40662AF6656C00E4231A /* DatePictureViewController.swift in Sources */,

@@ -32,21 +32,40 @@ class PictureOfDayLoadingView: UIView {
     }()
     
     
-    //MARK: - ????
+    //MARK: - Construction
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(loader)
-        addSubview(label)
-        loader.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: loader.topAnchor, constant: -80).isActive = true
-        label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        backgroundColor = .white
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Functions
+    
+    func setActivityIndicatorAnimating(isAnimating: Bool) {
+        if isAnimating {
+            loader.startAnimating()
+        } else {
+            loader.stopAnimating()
+        }
+    }
+    
+    // MARK: - Private functions
+    
+    private func setupView() {
+        backgroundColor = .white
+        
+        addSubview(loader)
+        addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.bottomAnchor.constraint(equalTo: loader.topAnchor, constant: -80),
+            label.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
 }

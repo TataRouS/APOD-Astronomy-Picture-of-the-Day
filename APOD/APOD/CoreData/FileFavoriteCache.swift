@@ -11,18 +11,15 @@ import CoreData
 protocol FileCacheProtocol {
     func save()
     func delete(object: NSManagedObject)
-    func addPicture (apod: DataImage)
+    func addPicture(apod: DataImage)
     func fetchPictures() -> [DataImage]
-    func checkPictureByDate (apod: DataImage) -> Bool
+    func checkPictureByDate(date: String) -> Bool
 }
 
 final class FileFavoriteCache: FileCacheProtocol {
-   
-    
     lazy var persistentContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "APODDataModel")
-        persistentContainer.loadPersistentStores(completionHandler: {(_, error)
-            in
+        persistentContainer.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error {
                 print(error)
             }
@@ -96,10 +93,10 @@ final class FileFavoriteCache: FileCacheProtocol {
         }
     }
     
-    func checkPictureByDate (apod: DataImage) -> Bool {
+    func checkPictureByDate(date: String) -> Bool {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
-        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
+        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [date])
         let result = try? persistentContainer.viewContext.fetch(fetchRequest)
         return result?.first != nil
-        }
+    }
 }

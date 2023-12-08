@@ -8,57 +8,96 @@
 import UIKit
 
 protocol PictureOfDayPresenterDelegate: AnyObject {
-    func presentImage(apod: DataImage, data: Data, isFavorite: Bool)
-  //  func showAlert()
-    func showLoaderState()
-    func showErorState()
-  
+    func showState(_ newState: PictureOfDayScreenState)
+}
+
+enum PictureOfDayError: Error {
+    case unknownError
+    case networkError(Error)
 }
 
 class PictureOfDayPresenter {
     typealias PresenterDelegate = PictureOfDayPresenterDelegate & UIViewController
-    weak var delegate: PresenterDelegate?
-    private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
     
-    private func getImage(){
-        delegate?.showLoaderState()
-        networkService.getImage(completion: {[weak self] result in
+    // MARK: - Properties
+    
+    weak var delegate: PresenterDelegate?
+    
+    // MARK: - Private properties
+    
+    private let networkService: NetworkService
+    private let fileCacheService: FileFavoriteCache
+
+    private var currentImageModel: DataImage?
+    
+    // MARK: - Construction
+    
+    init(networkService: NetworkService,
+         fileCacheService: FileFavoriteCache) {
+        self.networkService = networkService
+        self.fileCacheService = fileCacheService
+    }
+    
+    // MARK: - Private functions
+    
+    private func requestData() {
+        delegate?.showState(.loading)
+
+        networkService.getImage { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let apod):
-                print("getImagePresenterSuccess")
-                let checkFavoritePicture = self?.fileCache.checkPictureByDate(apod: apod)
-                print("isFavorite", checkFavoritePicture)
-                DispatchQueue.global ().async {
-                    if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
-                        self?.delegate?.presentImage(apod: apod, data: data, isFavorite: checkFavoritePicture ?? false)
-                    }
-                }
-            case .failure(_):
-                print("getImageErrorPresenterfaiure")
-                self?.delegate?.showErorState()
+                processSuccessResponse(apod)
+            case .failure(let error):
+                processFailureResponse(error)
             }
-        })
+        }
+    }
+    
+    private func processSuccessResponse(_ responseModel: DataImage) {
+        guard let strongHDUrl = responseModel.hdurl,
+              let url = URL (string: strongHDUrl),
+              let data = try? Data(contentsOf: url) else {
+            delegate?.showState(.error(.unknownError))
+            return
+        }
+
+        var isFavorite = false
+        if let strongDate = responseModel.date {
+            isFavorite = fileCacheService.checkPictureByDate(date: strongDate)
+        }
+        currentImageModel = responseModel
+        
+        let contentModel = PictureOfDayViewModel(isFavorite: isFavorite,
+                                                 image: UIImage(data: data),
+                                                 title: responseModel.title,
+                                                 description: responseModel.explanation)
+        delegate?.showState(.loaded(contentModel))
+    }
+    
+    private func processFailureResponse(_ error: Error) {
+        delegate?.showState(.error(.networkError(error)))
     }
 }
 
-
-
 extension PictureOfDayPresenter: PictureOfDayProtocol {
-    func deleteFavorite(apod: DataImage) {
-      fileCache.deletePicture(apod: apod)
-        print("delete")
-    }
-    
-    func addFavorite(apod: DataImage) {
-        fileCache.addPicture(apod: apod)
+    func didTapFavoriteButton() {
+        guard let strongCurrentImageModel = currentImageModel else {
+            delegate?.showState(.error(.unknownError))
+            return
+        }
+        
+        //fileCache.addPicture(apod: strongCurrentImageModel)
+        //fileCache.deletePicture(apod: strongCurrentImageModel)
     }
 
     func didTapRetryButton() {
-        getImage()
+        requestData()
     }
     
     func viewDidLoad() {
-        getImage()
+        requestData()
     }
 }

@@ -64,18 +64,13 @@ class PictureOfDayContentView: UIView {
     
     //MARK: - Functions
     
-    func presentImage(apod: DataImage, data: Data, isFilledStar: Bool){
-        DispatchQueue.main.async {
-            if isFilledStar {
-                self.button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            }else{
-                self.button.setImage(UIImage(systemName: "star"), for: .normal)
-            }
-            self.starIsFilled = isFilledStar
-            self.imageView.image = UIImage(data: data)
-            self.labelTitle.text = apod.title
-            self.labelDescriptions.text = apod.explanation
-        }
+    func setupViewWithModel(_ contentModel: PictureOfDayViewModel){
+        let starImageName = contentModel.isFavorite ? "star.fill": "star"
+        button.setImage(UIImage(systemName: starImageName), for: .normal)
+        starIsFilled = contentModel.isFavorite
+        imageView.image = contentModel.image
+        labelTitle.text = contentModel.title
+        labelDescriptions.text = contentModel.description
     }
     
     @objc func tap(){
