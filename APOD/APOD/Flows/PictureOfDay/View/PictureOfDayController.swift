@@ -73,9 +73,9 @@ class PictureOfDayController: UIViewController {
   
 extension PictureOfDayController: PictureOfDayPresenterDelegate {
     func showState(_ newState: PictureOfDayScreenState) {
-        resetState()
-        
         DispatchQueue.main.async { [weak self] in
+            self?.resetState()
+        
             switch newState {
             case .loading:
                 self?.processLoadingState()

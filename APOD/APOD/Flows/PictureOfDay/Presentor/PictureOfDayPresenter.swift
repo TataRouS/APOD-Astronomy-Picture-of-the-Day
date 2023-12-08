@@ -25,17 +25,17 @@ class PictureOfDayPresenter {
     
     // MARK: - Private properties
     
-    private let networkService: NetworkService
-    private let fileCacheService: FileFavoriteCache
+    private let networkService: NetworkServiceProtocol
+    private let dataStoreService: DataStoreServiceProtocol
 
     private var currentImageModel: DataImage?
     
     // MARK: - Construction
     
-    init(networkService: NetworkService,
-         fileCacheService: FileFavoriteCache) {
+    init(networkService: NetworkServiceProtocol,
+         fileCacheService: DataStoreServiceProtocol) {
         self.networkService = networkService
-        self.fileCacheService = fileCacheService
+        self.dataStoreService = fileCacheService
     }
     
     // MARK: - Private functions
@@ -66,7 +66,7 @@ class PictureOfDayPresenter {
 
         var isFavorite = false
         if let strongDate = responseModel.date {
-            isFavorite = fileCacheService.checkPictureByDate(date: strongDate)
+            isFavorite = dataStoreService.isFavorite(date: strongDate)
         }
         currentImageModel = responseModel
         
@@ -89,8 +89,7 @@ extension PictureOfDayPresenter: PictureOfDayProtocol {
             return
         }
         
-        //fileCache.addPicture(apod: strongCurrentImageModel)
-        //fileCache.deletePicture(apod: strongCurrentImageModel)
+        dataStoreService.addPictureToFavoriteIfNeeded(apod: strongCurrentImageModel)
     }
 
     func didTapRetryButton() {

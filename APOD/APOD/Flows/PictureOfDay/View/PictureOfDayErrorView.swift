@@ -51,7 +51,6 @@ class PictureOfDayErrorView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
         button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return button
     }()
     
@@ -66,6 +65,8 @@ class PictureOfDayErrorView: UIView {
     @objc func didTapButton() {
         delegate?.didTapRetryButton()
     }
+    
+    // MARK: - 
     
     //MARK: - Private functions
     
@@ -89,14 +90,3 @@ class PictureOfDayErrorView: UIView {
         ])
     }
 }
-
-// label  ошибка загрузки данных из сети
-//кнопка попробовать снова
-//(через делегат просим презентер заного загрузить)
-//протокол подключаю
-//target: delegat:didTapRetryButton()
-
-
-
-    
-

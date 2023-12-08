@@ -11,7 +11,7 @@ import UIKit
 struct  PictureOfDayBuilder {
     static func build() -> UIViewController {
         let presenter = PictureOfDayPresenter(networkService: NetworkService(),
-                                              fileCacheService: FileFavoriteCache())
+                                              fileCacheService: DataStoreService())
         let viewController = PictureOfDayController()
         viewController.presenter = presenter
         presenter.delegate = viewController

@@ -29,7 +29,7 @@
 		BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */; };
 		BD439B132B179BD800814B15 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B122B179BD800814B15 /* FavoritePresenter.swift */; };
 		BD439B172B179E9600814B15 /* APODDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD439B152B179E9600814B15 /* APODDataModel.xcdatamodeld */; };
-		BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */; };
+		BD439B192B17A93C00814B15 /* DataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B182B17A93C00814B15 /* DataStoreService.swift */; };
 		BD439B1B2B17B18900814B15 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1A2B17B18900814B15 /* FavoriteCell.swift */; };
 		BD439B1D2B19072400814B15 /* PictureOfDayContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */; };
 		BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */; };
@@ -82,7 +82,7 @@
 		BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayBuilder.swift; sourceTree = "<group>"; };
 		BD439B122B179BD800814B15 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		BD439B162B179E9600814B15 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFavoriteCache.swift; sourceTree = "<group>"; };
+		BD439B182B17A93C00814B15 /* DataStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreService.swift; sourceTree = "<group>"; };
 		BD439B1A2B17B18900814B15 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		BD439B1C2B19072400814B15 /* PictureOfDayContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayContentView.swift; sourceTree = "<group>"; };
 		BD439B1E2B19073A00814B15 /* PictureOfDayErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayErrorView.swift; sourceTree = "<group>"; };
@@ -127,6 +127,8 @@
 		8C6C9DCC2AEBBF4A00B87D6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BD439B142B179E7E00814B15 /* CoreData */,
+				BD366FCA2AE86B770068E36C /* NetworkServiece */,
 				8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */,
 			);
 			path = Model;
@@ -169,8 +171,6 @@
 				8C1B40672AF6698B00E4231A /* URLExtension.swift */,
 				BD439AFD2B06964E00814B15 /* Flows */,
 				8C6C9DCC2AEBBF4A00B87D6D /* Model */,
-				BD366FCA2AE86B770068E36C /* NetworkServiece */,
-				BD439B142B179E7E00814B15 /* CoreData */,
 				BD42F0712ADDA183006C0518 /* Assets.xcassets */,
 				8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */,
 				BD42F0762ADDA183006C0518 /* Info.plist */,
@@ -301,7 +301,7 @@
 		BD439B142B179E7E00814B15 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				BD439B182B17A93C00814B15 /* FileFavoriteCache.swift */,
+				BD439B182B17A93C00814B15 /* DataStoreService.swift */,
 				BD439B152B179E9600814B15 /* APODDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -461,7 +461,7 @@
 				8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
 				8C08207F2B1287A3001D3B22 /* DatePictureBuilder.swift in Sources */,
-				BD439B192B17A93C00814B15 /* FileFavoriteCache.swift in Sources */,
+				BD439B192B17A93C00814B15 /* DataStoreService.swift in Sources */,
 				DDA944C02B23BAB500C7C947 /* PictureOfDayViewModel.swift in Sources */,
 				BD366FCC2AE86BA70068E36C /* NetworkServieceProtocol.swift in Sources */,
 				BD439B0F2B0FC66900814B15 /* PictureOfDayBuilder.swift in Sources */,
