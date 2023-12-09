@@ -5,6 +5,7 @@
 //  Created by Nata Kuznetsova on 29.11.2023.
 //
 
+import Foundation
 import UIKit
 
 protocol FavoritePresenterDelegate: AnyObject {
@@ -28,7 +29,7 @@ extension FavoritePresenter: FavoritePresenterProtocol {
     
     func deleteFavorite(apod: DataImage) {
       fileCache.deletePicture(apod: apod)
-        print("delete")
+        print("deleteFavoritePresenterFunc")
     }
     
 }

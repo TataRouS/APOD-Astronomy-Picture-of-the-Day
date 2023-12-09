@@ -14,11 +14,6 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateTabBar()
-        
-    //tabBar.tintColor = .red
-        //tabBar.unselectedItemTintColor = .green
-       // tabBar.barTintColor = .orange
-        //UITabBar.appearance().barTintColor = .orange
     }
     
     //MARK: - Private functions
@@ -32,7 +27,6 @@ class MainTabBarController: UITabBarController {
     }
     
     private func generateVC(viewController: UIViewController, title: String, image: UIImage?) -> UINavigationController {
-        //let item = UITabBarItem(title: title, image: image, tag: 0)
         let navController = UINavigationController(rootViewController: viewController)
         navController.title = title
         navController.tabBarItem.image = image

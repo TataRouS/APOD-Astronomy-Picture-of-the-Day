@@ -18,9 +18,11 @@ class DatePictureController: UIViewController {
     //MARK: - Properties
     
     var presenter: DatePicturePresenterProtocol?
-    
+    let networkController = NetworkService()
+    let dateFormatter = DateFormatter()
     
     //MARK: - Private properties
+   
     private var model: DataImage?
     
     private var starIsFilled: Bool = false
@@ -180,8 +182,6 @@ class DatePictureController: UIViewController {
         ])
     }
     
-    let networkController = NetworkService()
-    let dateFormatter = DateFormatter()
     
     private func setInitView() {
         labelDescriptions.text = ""

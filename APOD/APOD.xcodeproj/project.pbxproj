@@ -11,7 +11,6 @@
 		8C1B40662AF6656C00E4231A /* DatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */; };
 		8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
 		8C34BEFA2B19D8FE00D32F97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */; };
-		8C432C6E2B171FFE00D2DDBA /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* Favorite.swift */; };
 		8CF58B742B1BB9D9005BCBA1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF58B732B1BB9D9005BCBA1 /* MainTabBarController.swift */; };
@@ -59,7 +58,6 @@
 		8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureViewController.swift; sourceTree = "<group>"; };
 		8C1B40672AF6698B00E4231A /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		8CB794882AFFADCE00F4964E /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		8CF58B732B1BB9D9005BCBA1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 		BD439AFD2B06964E00814B15 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				8C432C6D2B171FFE00D2DDBA /* StartViewController.swift */,
 				8CF58B732B1BB9D9005BCBA1 /* MainTabBarController.swift */,
 				BD439AFE2B06966300814B15 /* PictureOfDay */,
 				BD439B072B0FC4D000814B15 /* DatePicture */,
@@ -443,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD42F06D2ADDA182006C0518 /* PictureOfDayController.swift in Sources */,
-				8C432C6E2B171FFE00D2DDBA /* StartViewController.swift in Sources */,
 				8CF58B742B1BB9D9005BCBA1 /* MainTabBarController.swift in Sources */,
 				BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */,
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
