@@ -12,6 +12,7 @@ protocol DataStoreServiceProtocol {
     func addPictureToFavoriteIfNeeded(apod: DataImage)
     func getFavoritePictures() -> [DataImage]
     func isFavorite(date: String) -> Bool
+    func deletePicture(apod: DataImage)
 }
 
 protocol DataStoreServiceDelegate: AnyObject {
@@ -82,7 +83,7 @@ final class DataStoreService {
         saveStateIfNeeded()
     }
     
-    private func deletePicture(apod: DataImage){
+    internal func deletePicture(apod: DataImage){
         let fetchRequest: NSFetchRequest<PictureModelCD> =
         PictureModelCD.fetchRequest()
      //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
