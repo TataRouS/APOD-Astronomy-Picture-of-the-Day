@@ -16,10 +16,10 @@ class DatePicturePresenter {
     typealias PresenterDelegate = DatePicturePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
+    private var fileCache = DataStoreService()
     
     private func getImage(){
-        networkService.getImage(completion: {[weak self] result in
+        networkService.requestData(completion: {[weak self] result in
             switch result {
             case .success(let apod):
                 DispatchQueue.global ().async {
@@ -37,12 +37,12 @@ class DatePicturePresenter {
 extension DatePicturePresenter: DatePicturePresenterProtocol {
     
     func deleteFavorite(apod: DataImage) {
-    fileCache.deletePicture(apod: apod)
+    //fileCache.deletePicture(apod: apod)
         print("delete")
     }
     
     func addFavorite(apod: DataImage) {
-        fileCache.addPicture(apod: apod)
+        //fileCache.addPicture(apod: apod)
     }
     
     func viewDidLoad() {

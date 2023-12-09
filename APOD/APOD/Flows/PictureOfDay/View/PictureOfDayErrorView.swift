@@ -14,34 +14,69 @@ protocol PictureOfDayErrorViewDelegate: AnyObject {
     
 class PictureOfDayErrorView: UIView {
     
+    private struct Constants {
+        static let labelFontName = "AvenirNext-DemiBold"
+    }
+    
     //MARK: - Properties
 
     var delegate: PictureOfDayErrorViewDelegate?
     
     //MARK: - Private properties
 
-    private var label: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .red
         label.textAlignment = .center
-        //label.backgroundColor = .white
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.text = "Oшибка загрузки данных из сети"
+        label.font = UIFont(name: Constants.labelFontName, size: 30)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.textAlignment = .center
+        label.font = UIFont(name: Constants.labelFontName, size: 20)
+        label.numberOfLines = 0
         return label
     }()
     
     private let button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        button.setTitle(" Попробовать снова ", for: .normal)
+        let button = UIButton()
         button.backgroundColor = .red
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        button.titleLabel?.font = UIFont(name: Constants.labelFontName, size: 15)
         button.layer.cornerRadius = 15
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return button
     }()
     
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    // Init
+    
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Functions
+    
+    func setupData(_ errorModel: PictureOfDayErrorViewModel) {
+        titleLabel.text = errorModel.title
+        subtitleLabel.text = errorModel.subtitle
+        button.setTitle(errorModel.buttonTitle, for: .normal)
+    }
     
     @objc func didTapButton() {
         delegate?.didTapRetryButton()
@@ -50,33 +85,23 @@ class PictureOfDayErrorView: UIView {
     //MARK: - Private functions
     
     private func setupViews() {
-        addSubview(label)
-        addSubview(button)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(button)
+        addSubview(stackView)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 40),
-            button.centerXAnchor.constraint(equalTo: centerXAnchor)
+            button.widthAnchor.constraint(equalToConstant: 300),
+            button.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
-
-// label  ошибка загрузки данных из сети
-//кнопка попробовать снова
-//(через делегат просим презентер заного загрузить)
-//протокол подключаю
-//target: delegat:didTapRetryButton()
-
-
-
-    
-

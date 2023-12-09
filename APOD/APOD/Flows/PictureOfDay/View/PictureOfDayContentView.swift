@@ -13,45 +13,68 @@ class PictureOfDayContentView: UIView {
     //MARK: - Properties
     
     var onTapPresenterController: ((Bool) -> Void)?
+    var onPullToRefreshr: (() -> Void)?
     
     //MARK: - Private properties
     
-    private var starIsFilled: Bool = false
-    
-    private var labelTitle: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private let button: UIButton = {
+    private let addToFavoriteButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 15
+        button.backgroundColor = .systemBlue
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }()
-    
-    private var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
     }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    private var labelDescriptions: UILabel = {
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    private var addToFavoritesView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .justified
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private var scrollViewContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var starIsFilled: Bool = false
+    
+    // MARK: - Construction
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -64,94 +87,90 @@ class PictureOfDayContentView: UIView {
     
     //MARK: - Functions
     
-    func presentImage(apod: DataImage, data: Data, isFilledStar: Bool){
-        DispatchQueue.main.async {
-            if isFilledStar {
-                self.button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            }else{
-                self.button.setImage(UIImage(systemName: "star"), for: .normal)
-            }
-            self.starIsFilled = isFilledStar
-            self.imageView.image = UIImage(data: data)
-            self.labelTitle.text = apod.title
-            self.labelDescriptions.text = apod.explanation
-        }
+    func setupViewWithModel(_ contentModel: PictureOfDayViewModel) {
+        scrollView.refreshControl?.endRefreshing()
+        updateFavoriteButtonState()
+        starIsFilled = contentModel.isFavorite
+        imageView.image = contentModel.image
+        descriptionLabel.text = contentModel.description
     }
     
-    @objc func tap(){
-        print("Power")
-        if starIsFilled {
-            button.setImage(UIImage(systemName: "star"), for: .normal)
-            starIsFilled = false
-        }else{
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            starIsFilled = true
-        }
-        guard let onTapPresenterController = onTapPresenterController
-        else {
-            return
-        }
-        onTapPresenterController(starIsFilled)
+    @objc func didTapFavoriteButton() {
+        toggleFavorite()
+        onTapPresenterController?(starIsFilled)
+    }
+    
+    @objc func didPullToRefresh() {
+        onPullToRefreshr?()
     }
     
     //MARK: - Private functions
     
     private func setupViews() {
-        addSubview(labelTitle)
-        addSubview(button)
-        print("setupViews")
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-        button.addGestureRecognizer(gestureRecognizer)
-        addSubview(imageView)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFavoriteButton))
+        addToFavoriteButton.addGestureRecognizer(gestureRecognizer)
+        
+        stackView.addArrangedSubview(addToFavoritesView)
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(addToFavoritesView)
+        addToFavoritesView.addSubview(addToFavoriteButton)
+        
+        scrollViewContentView.addSubview(stackView)
+        scrollView.addSubview(scrollViewContentView)
         addSubview(scrollView)
-        scrollView.addSubview(labelDescriptions)
+        
         setupConstraints()
     }
     
     private func setupConstraints() {
-        labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            labelTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            
-            button.widthAnchor.constraint(equalToConstant: 30),
-            button.heightAnchor.constraint(equalTo: button.widthAnchor),
-            button.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            button.leadingAnchor.constraint(equalTo: labelTitle.trailingAnchor),
-            
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
-            imageView.widthAnchor.constraint(equalToConstant: frame.size.width),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            
-            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
-            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            scrollViewContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollViewContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollViewContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollViewContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollViewContentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollViewContentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollViewContentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollViewContentView.bottomAnchor),
+            
+            imageView.widthAnchor.constraint(equalTo: widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: widthAnchor),
+            
+            addToFavoritesView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addToFavoritesView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            addToFavoriteButton.topAnchor.constraint(equalTo: addToFavoritesView.topAnchor, constant: 20),
+            addToFavoriteButton.bottomAnchor.constraint(equalTo: addToFavoritesView.bottomAnchor, constant: -20),
+            addToFavoriteButton.leadingAnchor.constraint(equalTo: addToFavoritesView.leadingAnchor, constant: 0),
+            addToFavoriteButton.trailingAnchor.constraint(equalTo: addToFavoritesView.trailingAnchor, constant: 0),
+            addToFavoriteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    private func toggleFavorite(starIsFilled: Bool){
-        if starIsFilled {
-            button.setImage(UIImage(systemName: "star"), for: .normal)
-            self.starIsFilled = false
-        }else{
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            self.starIsFilled = true
-        }
+    private func toggleFavorite() {
+        self.starIsFilled = !starIsFilled
+        updateFavoriteButtonState()
+    }
+    
+    private func updateFavoriteButtonState() {
+        let starImageName = starIsFilled ? "star.fill": "star"
+        addToFavoriteButton.setImage(UIImage(systemName: starImageName), for: .normal)
+        addToFavoriteButton.backgroundColor = starIsFilled ? .systemGray4: .systemBlue
+        addToFavoriteButton.setTitle(starIsFilled ? "Remove from favorite": "Add to favorite", for: .normal)
     }
 }

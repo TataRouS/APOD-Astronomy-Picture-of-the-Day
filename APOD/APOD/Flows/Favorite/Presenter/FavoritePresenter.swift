@@ -5,7 +5,6 @@
 //  Created by Nata Kuznetsova on 29.11.2023.
 //
 
-import Foundation
 import UIKit
 
 protocol FavoritePresenterDelegate: AnyObject {
@@ -17,19 +16,19 @@ class FavoritePresenter {
     typealias PresenterDelegate = FavoritePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
+    private var fileCache = DataStoreService()
     
 }
 
 extension FavoritePresenter: FavoritePresenterProtocol {
     func fetchPictures() -> [DataImage] {
-        let models = fileCache.fetchPictures()
-        return models
+        //let models = fileCache.fetchPictures()
+        return []
     }
     
     func deleteFavorite(apod: DataImage) {
-      fileCache.deletePicture(apod: apod)
-        print("deleteFavoritePresenterFunc")
+      //fileCache.deletePicture(apod: apod)
+        print("delete")
     }
     
 }

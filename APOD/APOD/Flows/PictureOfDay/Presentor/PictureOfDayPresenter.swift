@@ -8,55 +8,122 @@
 import UIKit
 
 protocol PictureOfDayPresenterDelegate: AnyObject {
-    func presentImage(apod: DataImage, data: Data, isFavorite: Bool)
-  //  func showAlert()
-    func showLoaderState()
-    func showErorState()
-  
+    func showState(_ newState: PictureOfDayScreenState)
+    func showShareSheet(image: UIImage)
+}
+
+enum PictureOfDayError: Error {
+    case unknownError
+    case networkError(Error)
 }
 
 class PictureOfDayPresenter {
     typealias PresenterDelegate = PictureOfDayPresenterDelegate & UIViewController
-    weak var delegate: PresenterDelegate?
-    private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
     
-    private func getImage(){
-        delegate?.showLoaderState()
-        networkService.getImage(completion: {[weak self] result in
+    // MARK: - Properties
+    
+    weak var delegate: PresenterDelegate?
+    
+    // MARK: - Private properties
+    
+    private let networkService: NetworkServiceProtocol
+    private let dataStoreService: DataStoreServiceProtocol
+
+    private var currentImageModel: DataImage?
+    private var currentImage: UIImage?
+    
+    // MARK: - Construction
+    
+    init(networkService: NetworkServiceProtocol,
+         dataStoreService: DataStoreServiceProtocol) {
+        self.networkService = networkService
+        self.dataStoreService = dataStoreService
+    }
+    
+    // MARK: - Private functions
+    
+    private func requestData() {
+        delegate?.showState(.loading)
+
+        networkService.requestData { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let apod):
-                print("getImagePresenterSuccess")
-                let checkFavoritePicture = self?.fileCache.checkPictureByDate(apod: apod)
-                print("isFavorite", checkFavoritePicture)
-                DispatchQueue.global ().async {
-                    if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
-                        self?.delegate?.presentImage(apod: apod, data: data, isFavorite: checkFavoritePicture ?? false)
-                    }
-                }
-            case .failure(_):
-                print("getImageErrorPresenterfaiure")
-                self?.delegate?.showErorState()
+                processSuccessResponse(apod)
+            case .failure(let error):
+                processFailureResponse(error)
             }
-        })
+        }
+    }
+    
+    private func processSuccessResponse(_ responseModel: DataImage) {
+        guard let image = extractUIImage(responseModel.hdurl) else {
+            delegate?.showState(.error(.unknownError))
+            return
+        }
+        var isFavorite = false
+        if let strongDate = responseModel.date {
+            isFavorite = dataStoreService.isFavorite(date: strongDate)
+        }
+        currentImageModel = responseModel
+        currentImage = image
+        
+        let contentModel = PictureOfDayViewModel(isFavorite: isFavorite,
+                                                 image: image,
+                                                 title: responseModel.title,
+                                                 description: responseModel.explanation)
+        delegate?.showState(.loaded(contentModel))
+    }
+    
+    private func processFailureResponse(_ error: Error) {
+        delegate?.showState(.error(.networkError(error)))
+    }
+    
+    private func extractUIImage(_ hdurl: String?) -> UIImage? {
+        guard let strongHDUrl = hdurl,
+              let url = URL (string: strongHDUrl),
+              let data = try? Data(contentsOf: url),
+              let uiimage = UIImage(data: data) else {
+            return nil
+        }
+        return uiimage
     }
 }
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
-    func deleteFavorite(apod: DataImage) {
-      fileCache.deletePicture(apod: apod)
-        print("delete")
+    func didTapNavBarActionButton() {
+        guard let image = currentImage else {
+            return
+        }
+        delegate?.showShareSheet(image: image)
     }
     
-    func addFavorite(apod: DataImage) {
-        fileCache.addPicture(apod: apod)
+    func didTapFavoriteButton() {
+        guard let strongCurrentImageModel = currentImageModel else {
+            delegate?.showState(.error(.unknownError))
+            return
+        }
+        
+        dataStoreService.addPictureToFavoriteIfNeeded(apod: strongCurrentImageModel)
     }
 
     func didTapRetryButton() {
-        getImage()
+        requestData()
     }
     
     func viewDidLoad() {
-        getImage()
+        requestData()
+    }
+    
+    func didPullToRefresh() {
+        requestData()
+    }
+}
+
+extension PictureOfDayPresenter: DataStoreServiceDelegate {
+    func didReceiveError(_ error: DataStoreServiceError) {
+        delegate?.showState(.error(.unknownError))
     }
 }

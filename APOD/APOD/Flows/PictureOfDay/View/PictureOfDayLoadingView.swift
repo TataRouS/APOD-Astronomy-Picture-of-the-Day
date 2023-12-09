@@ -15,7 +15,6 @@ class PictureOfDayLoadingView: UIView {
     private var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView()
         loader.translatesAutoresizingMaskIntoConstraints = false
-        loader.startAnimating()
         return loader
     }()
     
@@ -23,30 +22,57 @@ class PictureOfDayLoadingView: UIView {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 22)
-        label.numberOfLines = 2
-        label.text = "Astronomy Picture of the Day"
+        label.textAlignment = .left
+        label.font = UIFont(name: "AvenirNext-Bold", size: 50)
+        label.numberOfLines = 0
+        label.text = "Astronomy\nPicture\nOf the\nDay"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
-    //MARK: - ????
+    
+    //MARK: - Construction
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(loader)
-        addSubview(label)
-        loader.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        loader.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: loader.topAnchor, constant: -80).isActive = true
-        label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        backgroundColor = .white
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Functions
+    
+    func setActivityIndicatorAnimating(isAnimating: Bool) {
+        if isAnimating {
+            loader.startAnimating()
+        } else {
+            loader.stopAnimating()
+        }
+    }
+    
+    // MARK: - Private functions
+    
+    private func setupView() {
+        backgroundColor = .white
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(loader)
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
