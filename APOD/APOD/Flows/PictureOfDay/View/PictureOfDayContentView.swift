@@ -13,6 +13,7 @@ class PictureOfDayContentView: UIView {
     //MARK: - Properties
     
     var onTapPresenterController: ((Bool) -> Void)?
+    var onPullToRefreshr: (() -> Void)?
     
     //MARK: - Private properties
     
@@ -86,23 +87,30 @@ class PictureOfDayContentView: UIView {
     
     //MARK: - Functions
     
-    func setupViewWithModel(_ contentModel: PictureOfDayViewModel){
+    func setupViewWithModel(_ contentModel: PictureOfDayViewModel) {
+        scrollView.refreshControl?.endRefreshing()
         updateFavoriteButtonState()
         starIsFilled = contentModel.isFavorite
         imageView.image = contentModel.image
         descriptionLabel.text = contentModel.description
     }
     
-    @objc func didTapFavoriteButton(){
+    @objc func didTapFavoriteButton() {
         toggleFavorite()
         onTapPresenterController?(starIsFilled)
     }
     
-    
+    @objc func didPullToRefresh() {
+        onPullToRefreshr?()
+    }
     
     //MARK: - Private functions
     
     private func setupViews() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFavoriteButton))
         addToFavoriteButton.addGestureRecognizer(gestureRecognizer)
         

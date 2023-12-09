@@ -14,7 +14,7 @@ struct  PictureOfDayBuilder {
         let presenter = PictureOfDayPresenter(networkService: NetworkService(),
                                               dataStoreService: dataStoreService)
         dataStoreService.delegate = presenter
-        let viewController = PictureOfDayController()
+        let viewController = PictureOfTheDayViewController()
         viewController.presenter = presenter
         presenter.delegate = viewController
         return viewController

@@ -9,6 +9,7 @@ import UIKit
 
 protocol PictureOfDayPresenterDelegate: AnyObject {
     func showState(_ newState: PictureOfDayScreenState)
+    func showShareSheet(image: UIImage)
 }
 
 enum PictureOfDayError: Error {
@@ -29,6 +30,7 @@ class PictureOfDayPresenter {
     private let dataStoreService: DataStoreServiceProtocol
 
     private var currentImageModel: DataImage?
+    private var currentImage: UIImage?
     
     // MARK: - Construction
     
@@ -57,21 +59,19 @@ class PictureOfDayPresenter {
     }
     
     private func processSuccessResponse(_ responseModel: DataImage) {
-        guard let strongHDUrl = responseModel.hdurl,
-              let url = URL (string: strongHDUrl),
-              let data = try? Data(contentsOf: url) else {
+        guard let image = extractUIImage(responseModel.hdurl) else {
             delegate?.showState(.error(.unknownError))
             return
         }
-
         var isFavorite = false
         if let strongDate = responseModel.date {
             isFavorite = dataStoreService.isFavorite(date: strongDate)
         }
         currentImageModel = responseModel
+        currentImage = image
         
         let contentModel = PictureOfDayViewModel(isFavorite: isFavorite,
-                                                 image: UIImage(data: data),
+                                                 image: image,
                                                  title: responseModel.title,
                                                  description: responseModel.explanation)
         delegate?.showState(.loaded(contentModel))
@@ -80,9 +80,26 @@ class PictureOfDayPresenter {
     private func processFailureResponse(_ error: Error) {
         delegate?.showState(.error(.networkError(error)))
     }
+    
+    private func extractUIImage(_ hdurl: String?) -> UIImage? {
+        guard let strongHDUrl = hdurl,
+              let url = URL (string: strongHDUrl),
+              let data = try? Data(contentsOf: url),
+              let uiimage = UIImage(data: data) else {
+            return nil
+        }
+        return uiimage
+    }
 }
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
+    func didTapNavBarActionButton() {
+        guard let image = currentImage else {
+            return
+        }
+        delegate?.showShareSheet(image: image)
+    }
+    
     func didTapFavoriteButton() {
         guard let strongCurrentImageModel = currentImageModel else {
             delegate?.showState(.error(.unknownError))
@@ -97,6 +114,10 @@ extension PictureOfDayPresenter: PictureOfDayProtocol {
     }
     
     func viewDidLoad() {
+        requestData()
+    }
+    
+    func didPullToRefresh() {
         requestData()
     }
 }

@@ -11,6 +11,8 @@ protocol PictureOfDayProtocol {
     func viewDidLoad()
     func didTapRetryButton()
     func didTapFavoriteButton()
+    func didPullToRefresh()
+    func didTapNavBarActionButton()
 }
 
 enum PictureOfDayScreenState {
@@ -19,7 +21,7 @@ enum PictureOfDayScreenState {
     case loaded(PictureOfDayViewModel)
 }
 
-class PictureOfDayController: UIViewController {
+class PictureOfTheDayViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -39,9 +41,26 @@ class PictureOfDayController: UIViewController {
         presenter?.viewDidLoad()
     }
     
-    //MARK: - Private functions
+    // MARK: - Functions
+    
+    @objc func didTapNavBarActionButton() {
+        presenter?.didTapNavBarActionButton()
+    }
+    
+    // MARK: - Private functions
     
     private func setupViews(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
+                                                            target: self,
+                                                            action: #selector(didTapNavBarActionButton))
+        
+        contentView.onTapPresenterController = { [weak self] _ in
+            self?.presenter?.didTapFavoriteButton()
+        }
+        contentView.onPullToRefreshr = { [weak self] in
+            self?.presenter?.didPullToRefresh()
+        }
+        
         view.backgroundColor = .white
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +90,13 @@ class PictureOfDayController: UIViewController {
     }
 }
   
-extension PictureOfDayController: PictureOfDayPresenterDelegate {
+extension PictureOfTheDayViewController: PictureOfDayPresenterDelegate {
+    func showShareSheet(image: UIImage) {
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     func showState(_ newState: PictureOfDayScreenState) {
         DispatchQueue.main.async { [weak self] in
             self?.resetState()
@@ -110,12 +135,15 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     }
     
     func processLoadedState(_ contentModel: PictureOfDayViewModel) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         title = contentModel.title
         contentView.setupViewWithModel(contentModel)
         contentView.isHidden = false
     }
     
     func resetState() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        title = ""
         contentView.isHidden = true
         loadingView.isHidden = true
         errorView.isHidden = true
@@ -124,7 +152,7 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     }
 }
 
-extension PictureOfDayController: PictureOfDayErrorViewDelegate {
+extension PictureOfTheDayViewController: PictureOfDayErrorViewDelegate {
     func didTapRetryButton() {
         presenter?.didTapRetryButton()
     }
