@@ -27,6 +27,10 @@ class ImagePreviewScreenPresenter {
 }
 
 extension ImagePreviewScreenPresenter: ImagePreviewScreenPresenterProtocol {
+    func didDoubleTappImage() {
+        delegate?.dismissScreen()
+    }
+    
     func viewDidLoad() {
         delegate?.presentImage(image)
     }

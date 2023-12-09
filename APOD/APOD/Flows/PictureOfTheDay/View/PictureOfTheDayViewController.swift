@@ -97,7 +97,8 @@ class PictureOfTheDayViewController: UIViewController {
   
 extension PictureOfTheDayViewController: PictureOfDayPresenterDelegate {
     func present(_ viewController: UIViewController) {
-        present(viewController, animated: true)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: false)
     }
     
     func showShareSheet(image: UIImage) {

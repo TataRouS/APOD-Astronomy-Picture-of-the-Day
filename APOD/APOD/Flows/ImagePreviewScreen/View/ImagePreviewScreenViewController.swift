@@ -11,6 +11,7 @@ import DGZoomableImageView
 
 protocol ImagePreviewScreenPresenterProtocol: AnyObject {
     func viewDidLoad()
+    func didDoubleTappImage()
 }
 
 class ImagePreviewScreenViewController: UIViewController {
@@ -36,9 +37,19 @@ class ImagePreviewScreenViewController: UIViewController {
         presenter?.viewDidLoad()
     }
     
+    // MARK: - Functions
+    
+    @objc func didDoubleTappImage() {
+        presenter?.didDoubleTappImage()
+    }
+    
     // MARK: - Private functions
     
     private func setupViews() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTappImage))
+        doubleTapGesture.numberOfTapsRequired = 2
+        imageView.addGestureRecognizer(doubleTapGesture)
+        
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
