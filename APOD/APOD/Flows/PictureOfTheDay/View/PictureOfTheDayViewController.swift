@@ -13,6 +13,7 @@ protocol PictureOfDayProtocol {
     func didTapFavoriteButton()
     func didPullToRefresh()
     func didTapNavBarActionButton()
+    func onImageTap()
 }
 
 enum PictureOfDayScreenState {
@@ -60,6 +61,10 @@ class PictureOfTheDayViewController: UIViewController {
         contentView.onPullToRefreshr = { [weak self] in
             self?.presenter?.didPullToRefresh()
         }
+        contentView.onImageTap = { [weak self] in
+            self?.presenter?.onImageTap()
+            
+        }
         
         view.backgroundColor = .white
 
@@ -91,6 +96,10 @@ class PictureOfTheDayViewController: UIViewController {
 }
   
 extension PictureOfTheDayViewController: PictureOfDayPresenterDelegate {
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true)
+    }
+    
     func showShareSheet(image: UIImage) {
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view

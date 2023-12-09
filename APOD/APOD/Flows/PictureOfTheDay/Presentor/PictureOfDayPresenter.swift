@@ -10,6 +10,7 @@ import UIKit
 protocol PictureOfDayPresenterDelegate: AnyObject {
     func showState(_ newState: PictureOfDayScreenState)
     func showShareSheet(image: UIImage)
+    func present(_ viewController: UIViewController)
 }
 
 enum PictureOfDayError: Error {
@@ -93,6 +94,15 @@ class PictureOfDayPresenter {
 }
 
 extension PictureOfDayPresenter: PictureOfDayProtocol {
+    func onImageTap() {
+        guard let image = currentImage else {
+            return
+        }
+        
+        let imagePreviewScreen = ImagePreviewScreenBuilder.build(image: image)
+        delegate?.present(imagePreviewScreen)
+    }
+    
     func didTapNavBarActionButton() {
         guard let image = currentImage else {
             return

@@ -14,6 +14,7 @@ class PictureOfDayContentView: UIView {
     
     var onTapPresenterController: ((Bool) -> Void)?
     var onPullToRefreshr: (() -> Void)?
+    var onImageTap: (() -> Void)?
     
     //MARK: - Private properties
     
@@ -62,6 +63,8 @@ class PictureOfDayContentView: UIView {
     
     private var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.isUserInteractionEnabled = true
+        imageView.backgroundColor = .systemGray6
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -104,15 +107,21 @@ class PictureOfDayContentView: UIView {
         onPullToRefreshr?()
     }
     
+    @objc func didTapImage() {
+        onImageTap?()
+    }
+    
     //MARK: - Private functions
     
     private func setupViews() {
+        let imageViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        imageView.addGestureRecognizer(imageViewGestureRecognizer)
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         scrollView.refreshControl = refreshControl
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFavoriteButton))
-        addToFavoriteButton.addGestureRecognizer(gestureRecognizer)
+        addToFavoriteButton.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
         
         stackView.addArrangedSubview(addToFavoritesView)
         stackView.addArrangedSubview(imageView)
