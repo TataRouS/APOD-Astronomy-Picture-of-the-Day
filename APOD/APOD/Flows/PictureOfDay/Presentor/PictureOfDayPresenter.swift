@@ -33,9 +33,9 @@ class PictureOfDayPresenter {
     // MARK: - Construction
     
     init(networkService: NetworkServiceProtocol,
-         fileCacheService: DataStoreServiceProtocol) {
+         dataStoreService: DataStoreServiceProtocol) {
         self.networkService = networkService
-        self.dataStoreService = fileCacheService
+        self.dataStoreService = dataStoreService
     }
     
     // MARK: - Private functions
@@ -43,7 +43,7 @@ class PictureOfDayPresenter {
     private func requestData() {
         delegate?.showState(.loading)
 
-        networkService.getImage { [weak self] result in
+        networkService.requestData { [weak self] result in
             guard let self = self else {
                 return
             }
@@ -98,5 +98,11 @@ extension PictureOfDayPresenter: PictureOfDayProtocol {
     
     func viewDidLoad() {
         requestData()
+    }
+}
+
+extension PictureOfDayPresenter: DataStoreServiceDelegate {
+    func didReceiveError(_ error: DataStoreServiceError) {
+        delegate?.showState(.error(.unknownError))
     }
 }

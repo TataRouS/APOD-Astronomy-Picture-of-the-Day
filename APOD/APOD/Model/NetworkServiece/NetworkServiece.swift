@@ -8,27 +8,37 @@
 import Foundation
 import UIKit
 
+protocol NetworkServiceProtocol {
+    func requestData(completion: @escaping (Result<DataImage, Error>) -> Void) -> Void
+    func fetchPhotoInfo(date: String, completion: @escaping (DataImage?) -> Void)
+    func fetchPhoto(from url: URL, completion: @escaping (UIImage?) -> Void)
+}
 
 final class NetworkService: NetworkServiceProtocol {
-    
-    
     enum NetworkError: Error {
         case dataError
+        case urlCorrupt
     }
-    private let session = URLSession.shared
     
-    //   static var api_key = ""
-    //MARK: - General function to get info from Network
+    // MARK: - Private properties
+
+    private struct Constants {
+        static let serviceBaseURLString = "https://api.nasa.gov/planetary/apod"
+        static let apiKeyURLPartitionString = "?api_key="
+        static let apiKey = "2YS2Stqx8sBjzjCbCbiRnaSielwhKXpiEgootxHg"
+    }
+
+    //MARK: - Functions
     
-  func getImage(completion: @escaping (Result<DataImage, Error>) -> Void ) {
-      
-        let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=2YS2Stqx8sBjzjCbCbiRnaSielwhKXpiEgootxHg")
-        guard let url else {
-            return
-        }
+  func requestData(completion: @escaping (Result<DataImage, Error>) -> Void ) {
+      let url = URL(string: Constants.serviceBaseURLString + Constants.apiKeyURLPartitionString + Constants.apiKey)
+      guard let url else {
+          completion(.failure(NetworkError.urlCorrupt))
+          return
+      }
         
-        session.dataTask(with: url) { (data, response,error) in
-            guard let data else {
+      URLSession.shared.dataTask(with: url) { (data, response,error) in
+            guard let data = data else {
                 completion(.failure(NetworkError.dataError))
                 return
             }
@@ -40,41 +50,41 @@ final class NetworkService: NetworkServiceProtocol {
                 let apod = try
                 JSONDecoder().decode(DataImage.self, from: data)
                 completion(.success(apod))
-                print(apod)
             } catch {
                 completion(.failure(error))
-                print(error)
             }
         }
         .resume()
     }
     
     func fetchPhotoInfo(date: String, completion: @escaping (DataImage?) -> Void) {
-        let baseUrl = URL(string: "https://api.nasa.gov/planetary/apod")!
+        let baseUrl = URL(string: Constants.serviceBaseURLString)
         let query: [String: String] = [
-            "api_key": "AsQLm83QtpFevfrIgCd3cJhRs1dHGSCmJ3lYRZrr",
+            "api_key": Constants.apiKey,
             "date": date
         ]
-        let queryUrl = baseUrl.withQueries(query)!
+        guard let queryUrl = baseUrl?.withQueries(query) else {
+            completion(nil)
+            return
+        }
         
         URLSession.shared.dataTask(with: queryUrl) { data, _, _ in
-            let jsonDecoder = JSONDecoder()
-            
-            if let data = data, let photoInfoObject = try? jsonDecoder.decode(DataImage.self, from: data) {
-                completion(photoInfoObject)
-            } else {
+            guard let data = data,
+                  let photoInfoObject = try? JSONDecoder().decode(DataImage.self, from: data) else {
                 completion(nil)
+                return
             }
+            completion(photoInfoObject)
         }.resume()
     }
     
     func fetchPhoto(from url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, _, _ in
-            if let data = data, let image = UIImage(data: data) {
-                completion(image)
-            } else {
+            guard let data = data, let image = UIImage(data: data) else {
                 completion(nil)
+                return
             }
+            completion(image)
         }.resume()
     }
 }

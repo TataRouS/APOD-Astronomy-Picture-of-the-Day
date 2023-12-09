@@ -15,7 +15,6 @@ class PictureOfDayLoadingView: UIView {
     private var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView()
         loader.translatesAutoresizingMaskIntoConstraints = false
-        loader.startAnimating()
         return loader
     }()
     
@@ -23,12 +22,21 @@ class PictureOfDayLoadingView: UIView {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 22)
-        label.numberOfLines = 2
-        label.text = "Astronomy Picture of the Day"
+        label.textAlignment = .left
+        label.font = UIFont(name: "AvenirNext-Bold", size: 50)
+        label.numberOfLines = 0
+        label.text = "Astronomy\nPicture\nOf the\nDay"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     
@@ -58,14 +66,13 @@ class PictureOfDayLoadingView: UIView {
     private func setupView() {
         backgroundColor = .white
         
-        addSubview(loader)
-        addSubview(label)
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(loader)
+        addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            loader.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.bottomAnchor.constraint(equalTo: loader.topAnchor, constant: -80),
-            label.centerXAnchor.constraint(equalTo: centerXAnchor)
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

@@ -19,7 +19,7 @@ class DatePicturePresenter {
     private var fileCache = DataStoreService()
     
     private func getImage(){
-        networkService.getImage(completion: {[weak self] result in
+        networkService.requestData(completion: {[weak self] result in
             switch result {
             case .success(let apod):
                 DispatchQueue.global ().async {

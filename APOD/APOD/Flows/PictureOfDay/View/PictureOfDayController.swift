@@ -65,8 +65,8 @@ class PictureOfDayController: UIViewController {
             
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -110,6 +110,7 @@ extension PictureOfDayController: PictureOfDayPresenterDelegate {
     }
     
     func processLoadedState(_ contentModel: PictureOfDayViewModel) {
+        title = contentModel.title
         contentView.setupViewWithModel(contentModel)
         contentView.isHidden = false
     }

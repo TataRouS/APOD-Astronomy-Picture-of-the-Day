@@ -16,32 +16,20 @@ class PictureOfDayContentView: UIView {
     
     //MARK: - Private properties
     
-    private var starIsFilled: Bool = false
-    
-    private var labelTitle: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private let button: UIButton = {
+    private let addToFavoriteButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 15
+        button.backgroundColor = .systemBlue
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }()
-    
-    private var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
     }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
@@ -54,23 +42,38 @@ class PictureOfDayContentView: UIView {
         return stackView
     }()
     
-    private var headerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    private var addToFavoritesView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private var labelDescriptions: UILabel = {
+    private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .justified
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var scrollViewContentView = UIView()
+    private var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private var scrollViewContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var starIsFilled: Bool = false
+    
+    // MARK: - Construction
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -84,46 +87,31 @@ class PictureOfDayContentView: UIView {
     //MARK: - Functions
     
     func setupViewWithModel(_ contentModel: PictureOfDayViewModel){
-        let starImageName = contentModel.isFavorite ? "star.fill": "star"
-        button.setImage(UIImage(systemName: starImageName), for: .normal)
+        updateFavoriteButtonState()
         starIsFilled = contentModel.isFavorite
         imageView.image = contentModel.image
-        labelTitle.text = contentModel.title
-        labelDescriptions.text = contentModel.description
+        descriptionLabel.text = contentModel.description
     }
     
-    @objc func tap(){
-        print("Power")
-        if starIsFilled {
-            button.setImage(UIImage(systemName: "star"), for: .normal)
-            starIsFilled = false
-        }else{
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            starIsFilled = true
-        }
-        guard let onTapPresenterController = onTapPresenterController
-        else {
-            return
-        }
-        onTapPresenterController(starIsFilled)
+    @objc func didTapFavoriteButton(){
+        toggleFavorite()
+        onTapPresenterController?(starIsFilled)
     }
     
     
     
     //MARK: - Private functions
     
-    
     private func setupViews() {
-        print("setupViews")
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-        button.addGestureRecognizer(gestureRecognizer)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapFavoriteButton))
+        addToFavoriteButton.addGestureRecognizer(gestureRecognizer)
         
-        headerStackView.addArrangedSubview(labelTitle)
-        headerStackView.addArrangedSubview(button)
-        
-        stackView.addArrangedSubview(headerStackView)
+        stackView.addArrangedSubview(addToFavoritesView)
         stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(labelDescriptions)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(addToFavoritesView)
+        addToFavoritesView.addSubview(addToFavoriteButton)
+        
         scrollViewContentView.addSubview(stackView)
         scrollView.addSubview(scrollViewContentView)
         addSubview(scrollView)
@@ -132,12 +120,6 @@ class PictureOfDayContentView: UIView {
     }
     
     private func setupConstraints() {
-        labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
-        scrollViewContentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -158,24 +140,29 @@ class PictureOfDayContentView: UIView {
             imageView.widthAnchor.constraint(equalTo: widthAnchor),
             imageView.heightAnchor.constraint(equalTo: widthAnchor),
             
-            button.widthAnchor.constraint(equalToConstant: 30),
-            button.heightAnchor.constraint(equalToConstant: 30),
+            addToFavoritesView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addToFavoritesView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            labelDescriptions.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            labelDescriptions.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
+            addToFavoriteButton.topAnchor.constraint(equalTo: addToFavoritesView.topAnchor, constant: 20),
+            addToFavoriteButton.bottomAnchor.constraint(equalTo: addToFavoritesView.bottomAnchor, constant: -20),
+            addToFavoriteButton.leadingAnchor.constraint(equalTo: addToFavoritesView.leadingAnchor, constant: 0),
+            addToFavoriteButton.trailingAnchor.constraint(equalTo: addToFavoritesView.trailingAnchor, constant: 0),
+            addToFavoriteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    private func toggleFavorite(starIsFilled: Bool){
-        if starIsFilled {
-            button.setImage(UIImage(systemName: "star"), for: .normal)
-            self.starIsFilled = false
-        }else{
-            button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            self.starIsFilled = true
-        }
+    private func toggleFavorite() {
+        self.starIsFilled = !starIsFilled
+        updateFavoriteButtonState()
+    }
+    
+    private func updateFavoriteButtonState() {
+        let starImageName = starIsFilled ? "star.fill": "star"
+        addToFavoriteButton.setImage(UIImage(systemName: starImageName), for: .normal)
+        addToFavoriteButton.backgroundColor = starIsFilled ? .systemGray4: .systemBlue
+        addToFavoriteButton.setTitle(starIsFilled ? "Remove from favorite": "Add to favorite", for: .normal)
     }
 }

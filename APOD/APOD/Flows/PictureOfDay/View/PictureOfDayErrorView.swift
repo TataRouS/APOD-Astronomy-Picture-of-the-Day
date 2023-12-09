@@ -11,14 +11,12 @@ import UIKit
 protocol PictureOfDayErrorViewDelegate: AnyObject {
     func didTapRetryButton()
 }
-
-struct PictureOfDayErrorViewModel {
-    let title: String
-    let subtitle: String?
-    let buttonTitle: String
-}
     
 class PictureOfDayErrorView: UIView {
+    
+    private struct Constants {
+        static let labelFontName = "AvenirNext-DemiBold"
+    }
     
     //MARK: - Properties
 
@@ -30,8 +28,8 @@ class PictureOfDayErrorView: UIView {
         let label = UILabel()
         label.textColor = .red
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.text = "Oшибка загрузки данных из сети"
+        label.font = UIFont(name: Constants.labelFontName, size: 30)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -39,54 +37,71 @@ class PictureOfDayErrorView: UIView {
         let label = UILabel()
         label.textColor = .red
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        label.text = "Oшибка загрузки данных из сети"
+        label.font = UIFont(name: Constants.labelFontName, size: 20)
+        label.numberOfLines = 0
         return label
     }()
     
     private let button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        button.setTitle(" Попробовать снова ", for: .normal)
+        let button = UIButton()
         button.backgroundColor = .red
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        button.titleLabel?.font = UIFont(name: Constants.labelFontName, size: 15)
         button.layer.cornerRadius = 15
         return button
     }()
     
-    // MARK: - Functions
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 10
+        return stackView
+    }()
     
-    func setupData(_ model: PictureOfDayErrorViewModel) {
-        titleLabel.text = model.title
-        subtitleLabel.text = model.subtitle
-        button.setTitle(model.buttonTitle, for: .normal)
+    // Init
+    
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Functions
+    
+    func setupData(_ errorModel: PictureOfDayErrorViewModel) {
+        titleLabel.text = errorModel.title
+        subtitleLabel.text = errorModel.subtitle
+        button.setTitle(errorModel.buttonTitle, for: .normal)
     }
     
     @objc func didTapButton() {
         delegate?.didTapRetryButton()
     }
     
-    // MARK: - 
-    
     //MARK: - Private functions
     
     private func setupViews() {
-        addSubview(titleLabel)
-        addSubview(button)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(button)
+        addSubview(stackView)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            button.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
-            button.centerXAnchor.constraint(equalTo: centerXAnchor)
+            button.widthAnchor.constraint(equalToConstant: 300),
+            button.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
