@@ -27,6 +27,10 @@ class ImagePreviewScreenPresenter {
 }
 
 extension ImagePreviewScreenPresenter: ImagePreviewScreenPresenterProtocol {
+    func didTapCrossButton() {
+        delegate?.dismissScreen()
+    }
+    
     func didDoubleTappImage() {
         delegate?.dismissScreen()
     }
