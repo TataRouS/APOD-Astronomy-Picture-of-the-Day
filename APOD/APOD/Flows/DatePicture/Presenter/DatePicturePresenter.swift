@@ -37,12 +37,12 @@ class DatePicturePresenter {
 extension DatePicturePresenter: DatePicturePresenterProtocol {
     
     func deleteFavorite(apod: DataImage) {
-    //fileCache.deletePicture(apod: apod)
+        fileCache.deletePicture(apod: apod)
         print("delete")
     }
     
     func addFavorite(apod: DataImage) {
-        //fileCache.addPicture(apod: apod)
+        fileCache.addPictureToFavoriteIfNeeded(apod: apod)
     }
     
     func viewDidLoad() {
