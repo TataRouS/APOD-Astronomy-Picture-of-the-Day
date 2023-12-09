@@ -20,8 +20,8 @@ final class NetworkService: NetworkServiceProtocol {
     //   static var api_key = ""
     //MARK: - General function to get info from Network
     
-  func getImage(completion: @escaping (Result<DataImage, Error>) -> Void ) {
-      
+    func getImage(completion: @escaping (Result<DataImage, Error>) -> Void ) {
+        
         let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=2YS2Stqx8sBjzjCbCbiRnaSielwhKXpiEgootxHg")
         guard let url else {
             return

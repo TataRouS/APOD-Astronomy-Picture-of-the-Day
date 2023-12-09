@@ -17,7 +17,8 @@ protocol FileCacheProtocol {
 }
 
 final class FileFavoriteCache: FileCacheProtocol {
-   
+    
+    //MARK: - Properties
     
     lazy var persistentContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "APODDataModel")
@@ -30,6 +31,8 @@ final class FileFavoriteCache: FileCacheProtocol {
         return persistentContainer
     }()
     
+    //MARK: - Private properties
+    
     func save(){
         if persistentContainer.viewContext.hasChanges{
             do {
@@ -39,6 +42,8 @@ final class FileFavoriteCache: FileCacheProtocol {
             }
         }
     }
+    
+    //MARK: - Functions
     
     func delete(object: NSManagedObject){
         persistentContainer.viewContext.delete(object)
@@ -82,9 +87,9 @@ final class FileFavoriteCache: FileCacheProtocol {
     func deletePicture(apod: DataImage){
         let fetchRequest: NSFetchRequest<PictureModelCD> =
         PictureModelCD.fetchRequest()
-     //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
+        //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
         fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
-       guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
+        guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
             return
         }
         print(result)
@@ -92,7 +97,6 @@ final class FileFavoriteCache: FileCacheProtocol {
             print(object)
             delete(object:  object)
             save()
-          //  context.delete(object)
         }
     }
     
@@ -101,5 +105,5 @@ final class FileFavoriteCache: FileCacheProtocol {
         fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
         let result = try? persistentContainer.viewContext.fetch(fetchRequest)
         return result?.first != nil
-        }
+    }
 }

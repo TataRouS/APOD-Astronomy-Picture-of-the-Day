@@ -94,10 +94,7 @@ class PictureOfDayContentView: UIView {
         onTapPresenterController(starIsFilled)
     }
     
-    
-    
     //MARK: - Private functions
-    
     
     private func setupViews() {
         addSubview(labelTitle)

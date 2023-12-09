@@ -4,7 +4,7 @@
 //
 //  Created by Nata Kuznetsova on 29.11.2023.
 //
-
+import Foundation
 import UIKit
 
 final class FavoriteCell: UITableViewCell {
@@ -13,6 +13,11 @@ final class FavoriteCell: UITableViewCell {
         return picture
     }()
     
+    
+    //MARK: - Properties
+    var onTapPresenterController: ((String) -> Void)?
+    
+    //MARK: - Private properties
     
     private var text1: UILabel = {
         let label = UILabel()
@@ -32,16 +37,8 @@ final class FavoriteCell: UITableViewCell {
         return button
     }()
     
-    var onTapPresenterController: ((String) -> Void)?
-    
-    func setupTextLabel(apod: DataImage, picture: UIImage) {
-        let title = apod.title
-        let date = apod.date
-        text1.text = "\(title ?? "Without Title")"
-        text2.text = "\(date ?? "Without Date")"
-        self.picture.image = picture
-    }
-    
+
+    //MARK: - Construction
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -52,6 +49,29 @@ final class FavoriteCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    //MARK: - Functions
+    
+    func setupTextLabel(apod: DataImage, picture: UIImage) {
+        let title = apod.title
+        let date = apod.date
+        text1.text = "\(title ?? "Without Title")"
+        text2.text = "\(date ?? "Without Date")"
+        self.picture.image = picture
+    }
+    
+    @objc func tap(){
+        print("PowerDeletefromFAVORITE")
+        guard let onTapPresenterController = onTapPresenterController
+        else {
+            return
+        }
+        onTapPresenterController(text2.text ?? "")
+    }
+    
+    
+    //MARK: - Private functions
     
     private func setupViews() {
         contentView.addSubview(picture)
@@ -73,12 +93,12 @@ final class FavoriteCell: UITableViewCell {
             
             button.widthAnchor.constraint(equalToConstant: 30),
             button.heightAnchor.constraint(equalTo: button.widthAnchor),
-          //  button.topAnchor.constraint(equalTo: text1.topAnchor),
+            //  button.topAnchor.constraint(equalTo: text1.topAnchor),
             button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             picture.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-           picture.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            picture.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             picture.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 10),
             picture.heightAnchor.constraint(equalToConstant: 50),
             picture.widthAnchor.constraint(equalTo: picture.heightAnchor),
@@ -93,16 +113,6 @@ final class FavoriteCell: UITableViewCell {
             text2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10)
         ])
     }
-    
-    @objc func tap(){
-        print("PowerDeletefromFAVORITE")
-        guard let onTapPresenterController = onTapPresenterController
-        else {
-            return
-        }
-        onTapPresenterController(text2.text ?? "")
-    }
-
     
     override func prepareForReuse() {
         super.prepareForReuse()

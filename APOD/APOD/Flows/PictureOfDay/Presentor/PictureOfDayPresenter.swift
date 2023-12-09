@@ -42,8 +42,6 @@ class PictureOfDayPresenter {
     }
 }
 
-
-
 extension PictureOfDayPresenter: PictureOfDayProtocol {
     func deleteFavorite(apod: DataImage) {
       fileCache.deletePicture(apod: apod)
