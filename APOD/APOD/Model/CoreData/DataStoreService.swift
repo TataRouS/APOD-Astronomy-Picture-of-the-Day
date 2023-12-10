@@ -102,8 +102,10 @@ extension DataStoreService: DataStoreServiceProtocol {
     func addPictureToFavoriteIfNeeded(apod: DataImage) {
         guard let date = apod.date, isFavorite(date: date) else {
             addPictureToFavorite(apod: apod)
+            print("addPictureFunc addPictureToFavoriteIfNeeded", apod)
             return
         }
+        print("DeletingPictureFunc addPictureToFavoriteIfNeeded", apod)
         deletePicture(apod: apod)
     }
     
@@ -113,6 +115,7 @@ extension DataStoreService: DataStoreServiceProtocol {
         guard let apods = try? persistentContainer.viewContext.fetch(fetchRequest) else {
             return []
         }
+        print("fromFataBase", apods)
         var favoriteApods: [DataImage] = []
         for apod in apods {
             favoriteApods.append(DataImage (date: apod.date,
@@ -120,6 +123,7 @@ extension DataStoreService: DataStoreServiceProtocol {
                                             hdurl: apod.picture,
                                             title: apod.title))
         }
+        print("Date favoriteApods:", favoriteApods)
         return favoriteApods
     }
     
