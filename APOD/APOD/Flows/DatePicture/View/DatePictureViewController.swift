@@ -11,6 +11,7 @@ protocol DatePicturePresenterProtocol {
     func viewDidLoad()
     func addFavorite(apod: DataImage)
     func deleteFavorite(apod: DataImage)
+    func checkFavoriteByDate(date: String) -> Bool
 }
 
 class DatePictureController: UIViewController {
@@ -22,7 +23,7 @@ class DatePictureController: UIViewController {
     let dateFormatter = DateFormatter()
     
     //MARK: - Private properties
-   
+    
     private var model: DataImage?
     
     private var starIsFilled: Bool = false
@@ -78,13 +79,13 @@ class DatePictureController: UIViewController {
         datePicker.backgroundColor = .white
         datePicker.datePickerMode = .date
         
-        datePicker.addTarget(self, 
+        datePicker.addTarget(self,
                              action: #selector(datePickerAction(sender:)),
                              for: .valueChanged)
         return datePicker
     }()
     
-
+    
     //MARK: - Construction
     
     init() {
@@ -96,6 +97,11 @@ class DatePictureController: UIViewController {
     }
     
     //MARK: - Life cycle
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidLoad()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,10 +205,10 @@ class DatePictureController: UIViewController {
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
             starIsFilled = true
             presenter?.addFavorite(apod: model ?? DataImage())
-            }
+        }
     }
     
- }
+}
 
 
 extension DatePictureController: DatePicturePresenterDelegate {
@@ -215,6 +221,14 @@ extension DatePictureController: DatePicturePresenterDelegate {
                 self?.labelDescriptions.text = photoinfo.explanation
             }
             self?.model = photoinfo
+        }
+        starIsFilled = self.presenter?.checkFavoriteByDate(date: photoinfo.date ?? "") ?? false
+        DispatchQueue.main.async {
+            if self.starIsFilled {
+                self.button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            }else{
+                self.button.setImage(UIImage(systemName: "star"), for: .normal)
+            }
         }
     }
     

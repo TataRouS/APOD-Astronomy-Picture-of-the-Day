@@ -94,7 +94,6 @@ class PictureOfDayContentView: UIView {
         scrollView.refreshControl?.endRefreshing()
         starIsFilled = contentModel.isFavorite
         updateFavoriteButtonState()
-//        starIsFilled = contentModel.isFavorite
         imageView.image = contentModel.image
         descriptionLabel.text = contentModel.description
     }
