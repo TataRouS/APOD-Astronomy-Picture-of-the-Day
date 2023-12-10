@@ -35,6 +35,10 @@ class DatePicturePresenter {
 }
 
 extension DatePicturePresenter: DatePicturePresenterProtocol {
+    func checkFavoriteByDate(date: String) -> Bool {
+       return fileCache.isFavorite(date: date)
+    }
+    
     
     func deleteFavorite(apod: DataImage) {
         fileCache.deletePicture(apod: apod)

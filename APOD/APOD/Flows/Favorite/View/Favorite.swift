@@ -36,6 +36,11 @@ class Favorite: UITableViewController {
     
     //MARK: - Life cycle
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       update()
+    }
+    
     override func viewDidLoad() {
         print("TableFavorite")
         super.viewDidLoad()
