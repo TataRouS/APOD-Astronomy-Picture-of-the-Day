@@ -36,6 +36,17 @@
 		BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B202B19092C00814B15 /* PictureOfDayLoadingView.swift */; };
 		BD439B3B2B1CC70A00814B15 /* FavoriteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */; };
 		CC02E5B783B011799D4FE971 /* Pods_APOD_APODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E326D6F08126CE57E25E6411 /* Pods_APOD_APODUITests.framework */; };
+		DD8E1EA42B26076F003F6762 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8E1EA32B26076F003F6762 /* WidgetKit.framework */; };
+		DD8E1EA62B26076F003F6762 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8E1EA52B26076F003F6762 /* SwiftUI.framework */; };
+		DD8E1EA92B26076F003F6762 /* PictureOfTheDayWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E1EA82B26076F003F6762 /* PictureOfTheDayWidgetBundle.swift */; };
+		DD8E1EAB2B26076F003F6762 /* PictureOfTheDayWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E1EAA2B26076F003F6762 /* PictureOfTheDayWidgetLiveActivity.swift */; };
+		DD8E1EAD2B26076F003F6762 /* PictureOfTheDayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E1EAC2B26076F003F6762 /* PictureOfTheDayWidget.swift */; };
+		DD8E1EAF2B26076F003F6762 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8E1EAE2B26076F003F6762 /* AppIntent.swift */; };
+		DD8E1EB12B260770003F6762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD8E1EB02B260770003F6762 /* Assets.xcassets */; };
+		DD8E1EB52B260770003F6762 /* PictureOfTheDayWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DD8E1EA22B26076F003F6762 /* PictureOfTheDayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DD8E1EBA2B260CB0003F6762 /* NetworkServiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD366FCD2AE86DF90068E36C /* NetworkServiece.swift */; };
+		DD8E1EBB2B260D08003F6762 /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
+		DD8E1EBC2B260FD8003F6762 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
 		DDA944C02B23BAB500C7C947 /* PictureOfDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA944BF2B23BAB500C7C947 /* PictureOfDayViewModel.swift */; };
 		DDA944C22B23D7CB00C7C947 /* PictureOfDayErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA944C12B23D7CB00C7C947 /* PictureOfDayErrorViewModel.swift */; };
 		DDA944C52B248D0600C7C947 /* ImagePreviewScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA944C42B248D0600C7C947 /* ImagePreviewScreenViewController.swift */; };
@@ -58,7 +69,28 @@
 			remoteGlobalIDString = BD42F0642ADDA182006C0518;
 			remoteInfo = APOD;
 		};
+		DD8E1EB32B260770003F6762 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD42F05D2ADDA182006C0518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD8E1EA12B26076F003F6762;
+			remoteInfo = PictureOfTheDayWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DD8E1EB62B260770003F6762 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DD8E1EB52B260770003F6762 /* PictureOfTheDayWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		21C26C0083EE3EA20D18F2B7 /* Pods-APODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APODTests.release.xcconfig"; path = "Target Support Files/Pods-APODTests/Pods-APODTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +131,15 @@
 		BD439B3A2B1CC70A00814B15 /* FavoriteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBuilder.swift; sourceTree = "<group>"; };
 		CA5808A8ABF88A488BAF54E1 /* Pods-APOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APOD.release.xcconfig"; path = "Target Support Files/Pods-APOD/Pods-APOD.release.xcconfig"; sourceTree = "<group>"; };
 		DA5E4337846943A19F20CBCB /* Pods_APODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD8E1EA22B26076F003F6762 /* PictureOfTheDayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PictureOfTheDayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD8E1EA32B26076F003F6762 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DD8E1EA52B26076F003F6762 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		DD8E1EA82B26076F003F6762 /* PictureOfTheDayWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfTheDayWidgetBundle.swift; sourceTree = "<group>"; };
+		DD8E1EAA2B26076F003F6762 /* PictureOfTheDayWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfTheDayWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		DD8E1EAC2B26076F003F6762 /* PictureOfTheDayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfTheDayWidget.swift; sourceTree = "<group>"; };
+		DD8E1EAE2B26076F003F6762 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		DD8E1EB02B260770003F6762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD8E1EB22B260770003F6762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDA944BF2B23BAB500C7C947 /* PictureOfDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayViewModel.swift; sourceTree = "<group>"; };
 		DDA944C12B23D7CB00C7C947 /* PictureOfDayErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOfDayErrorViewModel.swift; sourceTree = "<group>"; };
 		DDA944C42B248D0600C7C947 /* ImagePreviewScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewScreenViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +173,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD8E1E9F2B26076F003F6762 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8E1EA62B26076F003F6762 /* SwiftUI.framework in Frameworks */,
+				DD8E1EA42B26076F003F6762 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -154,6 +204,8 @@
 				891AA934619DC56C7EEBFAAF /* Pods_APOD.framework */,
 				E326D6F08126CE57E25E6411 /* Pods_APOD_APODUITests.framework */,
 				DA5E4337846943A19F20CBCB /* Pods_APODTests.framework */,
+				DD8E1EA32B26076F003F6762 /* WidgetKit.framework */,
+				DD8E1EA52B26076F003F6762 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +242,7 @@
 				BD42F0672ADDA182006C0518 /* APOD */,
 				BD42F07E2ADDA183006C0518 /* APODTests */,
 				BD42F0882ADDA183006C0518 /* APODUITests */,
+				DD8E1EA72B26076F003F6762 /* PictureOfTheDayWidget */,
 				BD42F0662ADDA182006C0518 /* Products */,
 				5F8D2FB62133FC17B52B0CE5 /* Pods */,
 				66FFE33E84538E8C1BFDA81B /* Frameworks */,
@@ -202,6 +255,7 @@
 				BD42F0652ADDA182006C0518 /* APOD.app */,
 				BD42F07B2ADDA183006C0518 /* APODTests.xctest */,
 				BD42F0852ADDA183006C0518 /* APODUITests.xctest */,
+				DD8E1EA22B26076F003F6762 /* PictureOfTheDayWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +412,19 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		DD8E1EA72B26076F003F6762 /* PictureOfTheDayWidget */ = {
+			isa = PBXGroup;
+			children = (
+				DD8E1EA82B26076F003F6762 /* PictureOfTheDayWidgetBundle.swift */,
+				DD8E1EAA2B26076F003F6762 /* PictureOfTheDayWidgetLiveActivity.swift */,
+				DD8E1EAC2B26076F003F6762 /* PictureOfTheDayWidget.swift */,
+				DD8E1EAE2B26076F003F6762 /* AppIntent.swift */,
+				DD8E1EB02B260770003F6762 /* Assets.xcassets */,
+				DD8E1EB22B260770003F6762 /* Info.plist */,
+			);
+			path = PictureOfTheDayWidget;
+			sourceTree = "<group>";
+		};
 		DDA944BE2B23BA8700C7C947 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,10 +480,12 @@
 				BD42F0622ADDA182006C0518 /* Frameworks */,
 				BD42F0632ADDA182006C0518 /* Resources */,
 				5A7531E6EB33530B86562157 /* [CP] Embed Pods Frameworks */,
+				DD8E1EB62B260770003F6762 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DD8E1EB42B260770003F6762 /* PBXTargetDependency */,
 			);
 			name = APOD;
 			productName = APOD;
@@ -462,6 +531,23 @@
 			productReference = BD42F0852ADDA183006C0518 /* APODUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DD8E1EA12B26076F003F6762 /* PictureOfTheDayWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD8E1EB92B260770003F6762 /* Build configuration list for PBXNativeTarget "PictureOfTheDayWidgetExtension" */;
+			buildPhases = (
+				DD8E1E9E2B26076F003F6762 /* Sources */,
+				DD8E1E9F2B26076F003F6762 /* Frameworks */,
+				DD8E1EA02B26076F003F6762 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PictureOfTheDayWidgetExtension;
+			productName = PictureOfTheDayWidgetExtension;
+			productReference = DD8E1EA22B26076F003F6762 /* PictureOfTheDayWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -469,7 +555,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					BD42F0642ADDA182006C0518 = {
@@ -482,6 +568,9 @@
 					BD42F0842ADDA183006C0518 = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = BD42F0642ADDA182006C0518;
+					};
+					DD8E1EA12B26076F003F6762 = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
@@ -501,6 +590,7 @@
 				BD42F0642ADDA182006C0518 /* APOD */,
 				BD42F07A2ADDA183006C0518 /* APODTests */,
 				BD42F0842ADDA183006C0518 /* APODUITests */,
+				DD8E1EA12B26076F003F6762 /* PictureOfTheDayWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -526,6 +616,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD8E1EA02B26076F003F6762 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8E1EB12B260770003F6762 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +783,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD8E1E9E2B26076F003F6762 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8E1EA92B26076F003F6762 /* PictureOfTheDayWidgetBundle.swift in Sources */,
+				DD8E1EBC2B260FD8003F6762 /* URLExtension.swift in Sources */,
+				DD8E1EBA2B260CB0003F6762 /* NetworkServiece.swift in Sources */,
+				DD8E1EAF2B26076F003F6762 /* AppIntent.swift in Sources */,
+				DD8E1EBB2B260D08003F6762 /* DataImage.swift in Sources */,
+				DD8E1EAD2B26076F003F6762 /* PictureOfTheDayWidget.swift in Sources */,
+				DD8E1EAB2B26076F003F6762 /* PictureOfTheDayWidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -697,6 +809,11 @@
 			isa = PBXTargetDependency;
 			target = BD42F0642ADDA182006C0518 /* APOD */;
 			targetProxy = BD42F0862ADDA183006C0518 /* PBXContainerItemProxy */;
+		};
+		DD8E1EB42B260770003F6762 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD8E1EA12B26076F003F6762 /* PictureOfTheDayWidgetExtension */;
+			targetProxy = DD8E1EB32B260770003F6762 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -819,6 +936,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3014593BE16E6A203A4389B0 /* Pods-APOD.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -847,6 +965,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA5808A8ABF88A488BAF54E1 /* Pods-APOD.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -951,6 +1070,71 @@
 			};
 			name = Release;
 		};
+		DD8E1EB72B260770003F6762 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LXHC5L2843;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PictureOfTheDayWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PictureOfTheDayWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.NataKuznetsova.geekbrains.APOD.PictureOfTheDayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD8E1EB82B260770003F6762 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LXHC5L2843;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PictureOfTheDayWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PictureOfTheDayWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.NataKuznetsova.geekbrains.APOD.PictureOfTheDayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -986,6 +1170,15 @@
 			buildConfigurations = (
 				BD42F0962ADDA183006C0518 /* Debug */,
 				BD42F0972ADDA183006C0518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD8E1EB92B260770003F6762 /* Build configuration list for PBXNativeTarget "PictureOfTheDayWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD8E1EB72B260770003F6762 /* Debug */,
+				DD8E1EB82B260770003F6762 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
