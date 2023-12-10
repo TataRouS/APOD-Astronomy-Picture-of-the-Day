@@ -30,9 +30,20 @@ final class NetworkService: NetworkServiceProtocol {
 
     //MARK: - Functions
     
+    func requestData() async throws -> DataImage {
+        guard let url = URL(string: Constants.serviceBaseURLString + Constants.apiKeyURLPartitionString + Constants.apiKey) else {
+            throw NetworkError.urlCorrupt
+        }
+        
+        // Fetch JSON data
+        let (data, _) = try await URLSession.shared.data(from: url)
+        // Parse the JSON data
+        let apodModel = try JSONDecoder().decode(DataImage.self, from: data)
+        return apodModel
+      }
+    
   func requestData(completion: @escaping (Result<DataImage, Error>) -> Void ) {
-      let url = URL(string: Constants.serviceBaseURLString + Constants.apiKeyURLPartitionString + Constants.apiKey)
-      guard let url else {
+      guard let url = URL(string: Constants.serviceBaseURLString + Constants.apiKeyURLPartitionString + Constants.apiKey) else {
           completion(.failure(NetworkError.urlCorrupt))
           return
       }
