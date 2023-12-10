@@ -23,7 +23,7 @@ class FavoritePresenter {
 extension FavoritePresenter: FavoritePresenterProtocol {
     func fetchPictures() -> [DataImage] {
         let models = fileCache.getFavoritePictures()
-        return []
+        return models
     }
     
     func deleteFavorite(apod: DataImage) {

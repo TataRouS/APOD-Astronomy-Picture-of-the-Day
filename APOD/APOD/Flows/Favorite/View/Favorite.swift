@@ -78,8 +78,10 @@ class Favorite: UITableViewController {
     //MARK: - Functions
     
     @objc func update() {
+        print("UpdateFunction", models)
         self.models = presenter?.fetchPictures() ?? []
         updateView(apod: self.models)
+        
     }
     
     //MARK: - Private functions
