@@ -28,50 +28,16 @@ class DatePictureController: UIViewController {
     
     private var starIsFilled: Bool = false
     
-    private var labelTitle: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        return label
-    }()
-    
-    private var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-    
     private var labelTitleDate: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.textColor = .systemBlue
         label.textAlignment = .center
-        label.text = "Select a date"
+        label.text = "Выбери дату"
         label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         //label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
-    
-    private var labelDescriptions: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textColor = .black
-        label.textAlignment = .justified
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "star"), for: .normal)
-        return button
     }()
     
     private var dateLabel: UIDatePicker = {
@@ -82,8 +48,69 @@ class DatePictureController: UIViewController {
         datePicker.addTarget(self,
                              action: #selector(datePickerAction(sender:)),
                              for: .valueChanged)
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         return datePicker
     }()
+    
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    private var labelTitle: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textColor = .black
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.isUserInteractionEnabled = true
+        //imageView.backgroundColor = .systemGray6
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private var labelDescriptions: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textColor = .black
+        label.textAlignment = .justified
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var scrollViewContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
     
     
     //MARK: - Construction
@@ -127,13 +154,23 @@ class DatePictureController: UIViewController {
     //MARK: - Private functions
     
     private func setupViews() {
-        view.addSubview(labelTitle)
-        view.addSubview(imageView)
+        
+        
+        //view.addSubview(labelTitle)
+        //view.addSubview(imageView)
         view.addSubview(labelTitleDate)
         view.addSubview(dateLabel)
         view.addSubview(button)
+        
+        stackView.addArrangedSubview(labelTitle)
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(labelDescriptions)
+        
+        scrollViewContentView.addSubview(stackView)
+        scrollView.addSubview(scrollViewContentView)
         view.addSubview(scrollView)
-        scrollView.addSubview(labelDescriptions)
+//        view.addSubview(scrollView)
+//        scrollView.addSubview(labelDescriptions)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         button.addGestureRecognizer(gestureRecognizer)
@@ -142,13 +179,6 @@ class DatePictureController: UIViewController {
     }
     
     private func setupConstraints() {
-        labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        labelDescriptions.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        labelTitleDate.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -163,28 +193,54 @@ class DatePictureController: UIViewController {
             dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             
-            labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelTitle.topAnchor.constraint(equalTo: labelTitleDate.bottomAnchor, constant: 20),
-            labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
-            imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            
-            
-            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            scrollView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
-            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            scrollViewContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollViewContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollViewContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollViewContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollViewContentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollViewContentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollViewContentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollViewContentView.bottomAnchor),
+            
+            labelTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            labelTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: view.widthAnchor),
+            
+            labelDescriptions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            labelDescriptions.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+
+            
+//            labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            labelTitle.topAnchor.constraint(equalTo: labelTitleDate.bottomAnchor, constant: 20),
+//            labelTitle.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            
+//            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            imageView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 10),
+//            imageView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+//            imageView.heightAnchor.constraint(equalToConstant: view.frame.size.width),
+//            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+//            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            
+            
+//            scrollView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+//            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+//            labelDescriptions.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            labelDescriptions.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+//            labelDescriptions.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            labelDescriptions.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//            labelDescriptions.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     

@@ -12,6 +12,8 @@
 		8C1B40662AF6656C00E4231A /* DatePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */; };
 		8C1B40682AF6698B00E4231A /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B40672AF6698B00E4231A /* URLExtension.swift */; };
 		8C34BEFA2B19D8FE00D32F97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */; };
+		8C4DC52B2B273079003B6F90 /* DatePictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4DC52A2B273079003B6F90 /* DatePictureViewModel.swift */; };
+		8C4DC52D2B2730AD003B6F90 /* DatePictureErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4DC52C2B2730AD003B6F90 /* DatePictureErrorViewModel.swift */; };
 		8C6C9DCE2AEBBF5C00B87D6D /* DataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */; };
 		8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB794882AFFADCE00F4964E /* Favorite.swift */; };
 		8CF58B742B1BB9D9005BCBA1 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF58B732B1BB9D9005BCBA1 /* MainTabBarViewController.swift */; };
@@ -102,6 +104,8 @@
 		8C1B40652AF6656C00E4231A /* DatePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureViewController.swift; sourceTree = "<group>"; };
 		8C1B40672AF6698B00E4231A /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		8C34BEF92B19D8FE00D32F97 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C4DC52A2B273079003B6F90 /* DatePictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureViewModel.swift; sourceTree = "<group>"; };
+		8C4DC52C2B2730AD003B6F90 /* DatePictureErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePictureErrorViewModel.swift; sourceTree = "<group>"; };
 		8C6C9DCD2AEBBF5C00B87D6D /* DataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImage.swift; sourceTree = "<group>"; };
 		8CB794882AFFADCE00F4964E /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		8CF58B732B1BB9D9005BCBA1 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,15 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		8C4DC5292B273042003B6F90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C4DC52A2B273079003B6F90 /* DatePictureViewModel.swift */,
+				8C4DC52C2B2730AD003B6F90 /* DatePictureErrorViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8C6C9DCC2AEBBF4A00B87D6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,7 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				DDA944BE2B23BA8700C7C947 /* Model */,
-				BD439B0D2B0FC62500814B15 /*  Builder */,
+				BD439B0D2B0FC62500814B15 /* Builder */,
 				BD439B002B06972100814B15 /* Presentor */,
 				BD439AFF2B06971700814B15 /* View */,
 			);
@@ -337,6 +350,7 @@
 		BD439B072B0FC4D000814B15 /* DatePicture */ = {
 			isa = PBXGroup;
 			children = (
+				8C4DC5292B273042003B6F90 /* Model */,
 				8C08207D2B128768001D3B22 /* Builder */,
 				BD439B082B0FC4EC00814B15 /* Presenter */,
 				BD439B092B0FC4FD00814B15 /* View */,
@@ -387,12 +401,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BD439B0D2B0FC62500814B15 /*  Builder */ = {
+		BD439B0D2B0FC62500814B15 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
 				BD439B0E2B0FC66900814B15 /* PictureOfDayBuilder.swift */,
 			);
-			path = " Builder";
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		BD439B142B179E7E00814B15 /* CoreData */ = {
@@ -742,6 +756,7 @@
 				BD439B1F2B19073A00814B15 /* PictureOfDayErrorView.swift in Sources */,
 				BD366FCE2AE86DF90068E36C /* NetworkServiece.swift in Sources */,
 				DDA944C22B23D7CB00C7C947 /* PictureOfDayErrorViewModel.swift in Sources */,
+				8C4DC52B2B273079003B6F90 /* DatePictureViewModel.swift in Sources */,
 				DDA944C52B248D0600C7C947 /* ImagePreviewScreenViewController.swift in Sources */,
 				8CB794892AFFADCE00F4964E /* Favorite.swift in Sources */,
 				BD42F0692ADDA182006C0518 /* AppDelegate.swift in Sources */,
@@ -762,6 +777,7 @@
 				BD439B212B19092C00814B15 /* PictureOfDayLoadingView.swift in Sources */,
 				BD439B132B179BD800814B15 /* FavoritePresenter.swift in Sources */,
 				DDA944CA2B248D6600C7C947 /* ImagePreviewScreenPresenter.swift in Sources */,
+				8C4DC52D2B2730AD003B6F90 /* DatePictureErrorViewModel.swift in Sources */,
 				BD439B022B07F94B00814B15 /* PictureOfDayPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
