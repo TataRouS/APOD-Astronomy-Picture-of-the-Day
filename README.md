@@ -33,6 +33,6 @@
 
 ### Наша iOS-команда:
 
-TataRouS
-
+[
+](https://github.com/TataRouS)https://github.com/TataRouS
 Galina432
