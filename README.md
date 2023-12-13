@@ -15,7 +15,7 @@
 
 ### Использование сети
 
-Для получения данных используется открытый сервис [https://api.nasa.gov](https://api.nasa.gov), а именно APOD: Astronomy Picture of the Day (первый API в списке https://api.nasa.gov/). 
+Для получения данных используется открытый сервис [https://api.nasa.gov](https://api.nasa.gov), а именно APOD: Astronomy Picture of the Day (первый API в списке). 
 
 
 ### Реализованные функции
