@@ -10,7 +10,7 @@ import UIKit
 protocol DatePicturePresenterProtocol {
     func viewDidLoad()
     func addFavorite(apod: DataImage)
-    func deleteFavorite(apod: DataImage)
+    func deleteFavorite(date: String)
     func checkFavoriteByDate(date: String) -> Bool
 }
 
@@ -256,7 +256,7 @@ class DatePictureController: UIViewController {
         if starIsFilled {
             button.setImage(UIImage(systemName: "star"), for: .normal)
             starIsFilled = false
-            presenter?.deleteFavorite(apod: model ?? DataImage())
+            presenter?.deleteFavorite(date: model?.date ?? "")
         }else{
             button.setImage(UIImage(systemName: "star.fill"), for: .normal)
             starIsFilled = true

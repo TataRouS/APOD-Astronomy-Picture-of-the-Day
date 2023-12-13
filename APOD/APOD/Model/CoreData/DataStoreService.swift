@@ -12,7 +12,7 @@ protocol DataStoreServiceProtocol {
     func addPictureToFavoriteIfNeeded(apod: DataImage)
     func getFavoritePictures() -> [DataImage]
     func isFavorite(date: String) -> Bool
-    func deletePicture(apod: DataImage)
+    func deletePicture(date: String)
 }
 
 protocol DataStoreServiceDelegate: AnyObject {
@@ -81,13 +81,14 @@ final class DataStoreService {
         apodModel.date = apod.date
         
         saveStateIfNeeded()
+        print("Запись в базу", apodModel)
     }
     
-    internal func deletePicture(apod: DataImage){
+    internal func deletePicture(date: String){
         let fetchRequest: NSFetchRequest<PictureModelCD> =
         PictureModelCD.fetchRequest()
      //   let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PictureModelCD")
-        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [apod.date ?? ""])
+        fetchRequest.predicate = NSPredicate(format: "date = %@", argumentArray: [date ?? ""])
        guard let result = try? persistentContainer.viewContext.fetch(fetchRequest) else {
             return
         }
@@ -106,7 +107,7 @@ extension DataStoreService: DataStoreServiceProtocol {
             return
         }
         print("DeletingPictureFunc addPictureToFavoriteIfNeeded", apod)
-        deletePicture(apod: apod)
+        deletePicture(date: date)
     }
     
     func getFavoritePictures() -> [DataImage] {
@@ -115,7 +116,7 @@ extension DataStoreService: DataStoreServiceProtocol {
         guard let apods = try? persistentContainer.viewContext.fetch(fetchRequest) else {
             return []
         }
-        print("fromFataBase", apods)
+        print("fromDataBase", apods)
         var favoriteApods: [DataImage] = []
         for apod in apods {
             favoriteApods.append(DataImage (date: apod.date,
