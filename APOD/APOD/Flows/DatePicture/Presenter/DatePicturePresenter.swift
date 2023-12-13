@@ -16,36 +16,41 @@ class DatePicturePresenter {
     typealias PresenterDelegate = DatePicturePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
+    private var fileCache = DataStoreService()
     
-    private func getImage(){
-        networkService.getImage(completion: {[weak self] result in
-            switch result {
-            case .success(let apod):
-                DispatchQueue.global ().async {
-                    if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
-                        self?.delegate?.updateUI(with: apod)
-                    }
-                }
-            case .failure(_):
-                self?.delegate?.showAlert()
-            }
-        })
-    }
+//    private func getImage(){
+//        networkService.requestData(completion: {[weak self] result in
+//            switch result {
+//            case .success(let apod):
+//                DispatchQueue.global ().async {
+//                    if let url = URL (string: apod.hdurl ?? ""), let data = try? Data(contentsOf: url){
+//                        self?.delegate?.updateUI(with: apod)
+//                    }
+//                }
+//            case .failure(_):
+//                self?.delegate?.showAlert()
+//            }
+//        })
+//    }
 }
 
 extension DatePicturePresenter: DatePicturePresenterProtocol {
+    func checkFavoriteByDate(date: String) -> Bool {
+       return fileCache.isFavorite(date: date)
+    }
+    
     
     func deleteFavorite(apod: DataImage) {
-    fileCache.deletePicture(apod: apod)
+        fileCache.deletePicture(apod: apod)
         print("delete")
     }
     
     func addFavorite(apod: DataImage) {
-        fileCache.addPicture(apod: apod)
+        fileCache.addPictureToFavoriteIfNeeded(apod: apod)
     }
     
     func viewDidLoad() {
-    getImage()
+    //getImage()
     }
 }
+

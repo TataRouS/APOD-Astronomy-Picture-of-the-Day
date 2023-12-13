@@ -16,13 +16,13 @@ class FavoritePresenter {
     typealias PresenterDelegate = FavoritePresenterDelegate & UIViewController
     weak var delegate: PresenterDelegate?
     private var networkService = NetworkService()
-    private var fileCache = FileFavoriteCache()
+    private var fileCache = DataStoreService()
     
 }
 
 extension FavoritePresenter: FavoritePresenterProtocol {
     func fetchPictures() -> [DataImage] {
-        let models = fileCache.fetchPictures()
+        let models = fileCache.getFavoritePictures()
         return models
     }
     
