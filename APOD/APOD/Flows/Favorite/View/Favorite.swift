@@ -36,6 +36,11 @@ class Favorite: UITableViewController {
     
     //MARK: - Life cycle
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       update()
+    }
+    
     override func viewDidLoad() {
         print("TableFavorite")
         super.viewDidLoad()
@@ -75,11 +80,26 @@ class Favorite: UITableViewController {
         
     }
     
+//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .delete
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            tableView.beginUpdates()
+//            models.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.endUpdates()
+//        }
+//    }
+    
     //MARK: - Functions
     
     @objc func update() {
+        print("UpdateFunction", models)
         self.models = presenter?.fetchPictures() ?? []
         updateView(apod: self.models)
+        
     }
     
     //MARK: - Private functions
