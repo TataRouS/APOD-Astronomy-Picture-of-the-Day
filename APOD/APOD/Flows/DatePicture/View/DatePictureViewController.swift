@@ -5,7 +5,6 @@
 //  Created by Irina on 04.11.2023.
 //
 
-
 import UIKit
 
 protocol DatePicturePresenterProtocol {
@@ -87,8 +86,6 @@ extension DatePictureController: DatePicturePresenterDelegate {
         
     }
 }
-
-
 
 
 

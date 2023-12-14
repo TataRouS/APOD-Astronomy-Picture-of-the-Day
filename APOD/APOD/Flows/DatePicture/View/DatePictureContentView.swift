@@ -5,46 +5,29 @@
 //  Created by Irina on 13.12.2023.
 //
 
-
 import UIKit
-
 
 class DatePictureContentView: UIView {
     
-   
     //MARK: - Properties
     
-   
     var presenter: DatePicturePresenterProtocol?
-    
     let networkController = NetworkService()
-    
     let dateFormatter = DateFormatter()
     
-    
     //MARK: - Private properties
-    
     
     var model: DataImage?
-    
     var starIsFilled: Bool = false
-    
     
     //MARK: - Private properties
     
-    
     private var labelTitleDate: UILabel = {
-   
         let label = UILabel()
-    
         label.backgroundColor = .white
-       
         label.textColor = .systemBlue
-      
         label.textAlignment = .center
-       
         label.text = "Выбери дату"
-       
         label.font = UIFont.systemFont(ofSize: 20, weight: .light)
         //label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +68,6 @@ class DatePictureContentView: UIView {
         stackView.spacing = 20
         return stackView
     }()
-    
     
     private var labelTitle: UILabel = {
         let label = UILabel()
@@ -227,7 +209,6 @@ class DatePictureContentView: UIView {
         ])
     }
 }
-
 
 extension DatePictureContentView: DatePicturePresenterDelegate {
     func showAlert() {}
