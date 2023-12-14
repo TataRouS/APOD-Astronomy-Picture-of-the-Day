@@ -24,7 +24,7 @@
 ## Реализованные функции
 
 На рабочем столе widget показывает картинку дня.
-![](https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202023-12-14%20at%2010.52.00.png|width=50, height=50)
+![](https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot%20-%20iPhone%2015%20Pro%20-%202023-12-14%20at%2010.52.00.png|width=50)
 
 Главный экран приложения содержит таб-бар с различными вкладками:
 
