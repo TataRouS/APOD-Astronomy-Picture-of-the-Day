@@ -24,6 +24,7 @@
 ## Реализованные функции
 
 На рабочем столе widget показывает картинку дня.
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot.png" width="100">
 
 Главный экран приложения содержит таб-бар с различными вкладками:
 
