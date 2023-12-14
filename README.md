@@ -8,8 +8,7 @@
 
 ## Технические детали
 
-* Верстка - UIKit 
-* Dgzoomableimageview
+* Верстка кодом 
 * WidgetKit
 * Архитектура: MVP 
 
@@ -31,14 +30,11 @@
 
 __1: APOD__ - показывает астрономическую картинку дня с описанием и названием, картинку можно сохранить на телефон, а также при нажатии на картинку можно ее рассмотреть в режиме zoom
 
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-1.png" width="200">
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2.png" width="200">
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2-2.png" width="200">
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-1.png" width="200"><img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2.png" width="200"><img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2-2.png" width="200">
 
 __2: DateAPOD__ - показывает астрономическую картинку дня с описанием и названием на определенную дату.
 
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-1.png" width="200">
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-2.png" width="200">
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-1.png" width="200"><img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-2.png" width="200">
 
 __3: Faforite__ - пользователь может добавить изображение из вкладок 1 и 2 в избранное и получить результат на этой вкладке.
 
@@ -49,3 +45,5 @@ __3: Faforite__ - пользователь может добавить изоб�
 [TataRouS](https://github.com/TataRouS)
 
 [Galina432](https://github.com/Galina432)
+
+[Lemonbrush](https://github.com/Lemonbrush)
