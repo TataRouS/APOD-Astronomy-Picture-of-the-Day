@@ -10,6 +10,7 @@ import UIKit
 protocol DatePicturePresenterDelegate: AnyObject {
     func updateUI(with photoinfo: DataImage)
     func showAlert()
+    //func showErrorState()
 }
 
 class DatePicturePresenter {
