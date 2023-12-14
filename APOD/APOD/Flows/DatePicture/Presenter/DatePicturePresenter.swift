@@ -10,7 +10,6 @@ import UIKit
 protocol DatePicturePresenterDelegate: AnyObject {
     func updateUI(with photoinfo: DataImage)
     func showAlert()
-    //func showErrorState()
 }
 
 class DatePicturePresenter {
@@ -38,6 +37,7 @@ class DatePicturePresenter {
 extension DatePicturePresenter: DatePicturePresenterProtocol {
     func deleteFavorite(apod: DataImage) {
         fileCache.addPictureToFavoriteIfNeeded(apod: apod)
+       // fileCache.deletePicture(date: apod)
     }
     
     func checkFavoriteByDate(date: String) -> Bool {
