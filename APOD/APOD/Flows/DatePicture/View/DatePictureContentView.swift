@@ -2,9 +2,6 @@
 //  DatePictureContentView.swift
 //  APOD
 //
-//  Created by Nata Kuznetsova on 13.12.2023.
-//
-
 
 import UIKit
 
