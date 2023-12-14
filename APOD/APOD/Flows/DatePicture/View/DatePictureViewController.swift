@@ -28,6 +28,12 @@ class DatePictureController: UIViewController {
         return view
     }()
     
+//    private var errorView: DatePictureErrorView = {
+//        let view = DatePictureErrorView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+    
     //MARK: - Construction
     
     init() {
@@ -58,6 +64,7 @@ class DatePictureController: UIViewController {
     
     private func setupViews() {
         setupContentView()
+        //setupErrorView()
     }
     
     private func setupContentView() {
@@ -72,6 +79,18 @@ class DatePictureController: UIViewController {
         ])
     }
     
+//    private func setupErrorView() {
+//        view.addSubview(errorView)
+//        
+//        NSLayoutConstraint.activate([
+//        
+//            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+//            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+//
+//    }
     
 }
 
@@ -79,10 +98,15 @@ extension DatePictureController: DatePicturePresenterDelegate {
     func showAlert() {}
     
     //func showLoaderState(){}
-    //func showErorState(){}
+    //func showErrorState(){}
     
     func updateUI(with photoinfo: DataImage){
         contentView.updateUI(with: photoinfo)
+//        DispatchQueue.main.async { [weak self] in
+//            guard let self = self else { return }
+//            self.contentView.isHidden = false
+//            self.errorView.isHidden = true
+//        }
         
     }
 }
