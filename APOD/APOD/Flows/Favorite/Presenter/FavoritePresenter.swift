@@ -9,7 +9,7 @@ import UIKit
 
 protocol FavoritePresenterDelegate: AnyObject {
     func showError(error: Error, date: Date)
-    func updateView(apod: [DataImage])
+    func updateView(viewModels: [DataViewImage])
 }
 
 class FavoritePresenter {
@@ -26,8 +26,8 @@ extension FavoritePresenter: FavoritePresenterProtocol {
         return models
     }
     
-    func deleteFavorite(apod: DataImage) {
-      fileCache.deletePicture(apod: apod)
+    func deleteFavorite(date: String){
+        fileCache.deletePicture(date: date)
         print("delete")
     }
     
