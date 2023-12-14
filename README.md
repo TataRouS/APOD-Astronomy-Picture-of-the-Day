@@ -23,8 +23,6 @@
 
 ## Реализованные функции
 
-<img scr="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%20logo.png" width="200">
-
 На рабочем столе widget показывает картинку дня.
 
 <img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot.png" width="200">
