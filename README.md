@@ -23,18 +23,28 @@
 
 ## Реализованные функции
 
+<img scr="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%20logo.png" width="200">
+
 На рабочем столе widget показывает картинку дня.
-<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot.png" width="100">
+
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Simulator%20Screenshot.png" width="200">
 
 Главный экран приложения содержит таб-бар с различными вкладками:
 
 __1: APOD__ - показывает астрономическую картинку дня с описанием и названием, картинку можно сохранить на телефон, а также при нажатии на картинку можно ее рассмотреть в режиме zoom
 
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-1.png" width="200">
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2.png" width="200">
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%201-2-2.png" width="200">
+
 __2: DateAPOD__ - показывает астрономическую картинку дня с описанием и названием на определенную дату.
+
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-1.png" width="200">
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%202-2.png" width="200">
 
 __3: Faforite__ - пользователь может добавить изображение из вкладок 1 и 2 в избранное и получить результат на этой вкладке.
 
-
+<img src="https://github.com/TataRouS/APOD-Astronomy-Picture-of-the-Day/blob/main/Screenshot%203.png" width="200">
 
 ## Наша iOS-команда:
 
